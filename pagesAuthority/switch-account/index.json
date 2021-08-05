@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "t-cell": "/itriton/cell/index"
+  },
+  "navigationStyle": "custom"
+}
