@@ -9,7 +9,9 @@ export const routeToLogin = (type = 'navigateTo') => {
 	if (current && current.route === 'pagesAuthority/login/index') {
 		return
 	}
-	router('/pagesAuthority/login/index', type)
+	// 直接绑定点击事件时，微信会将事件对象作为第一个参数传入。
+	const navigationType = typeof type === 'string' ? type : 'navigateTo'
+	router('/pagesAuthority/login/index', navigationType)
 }
 
 /**

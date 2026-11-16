@@ -1,14 +1,40 @@
-<!--pages/login/index.wxml-->
-<view class="login-wrap">
-	<view>
-		<view class="login__title">
-			HELLO！
-		</view>
-		<view class="text-xl">欢迎登录{{project_cn}}</view>
-	</view>
-  <view class="login__content">
-    <t-input t-class="border-b" title="账号" placeholder="请输入账号" data-param="username" value="{{formData.username}}" bindblur="bindInputFormData" bindchange="bindInputFormData"/>
-    <t-input t-class="border-b" type="password" title="密码" placeholder="请输入密码" data-param="password" value="{{formData.password}}" bindblur="bindInputFormData" bindchange="bindInputFormData"/>
+<view class="login-page">
+  <view class="login-main">
+    <view class="login-hero">
+      <view class="login-hero__copy">
+        <view class="login-hero__brand">{{project_cn}}</view>
+        <view class="login-hero__title">欢迎回来</view>
+        <view class="login-hero__subtitle">和小鲸一起，<view>发现生活里的好物。</view></view>
+      </view>
+      <image class="login-hero__image" src="/pagesAuthority/images/login-whale.png" mode="aspectFit" aria-hidden="true" />
+    </view>
+
+    <view class="login-card">
+      <view class="login-card__title">账号登录</view>
+      <view class="login-card__subtitle">管理你的订单与收货地址</view>
+
+      <view class="login-field">
+        <label class="login-field__label" for="login-username">账号</label>
+        <view class="login-field__control {{focusedField === 'username' ? 'login-field__control--focus' : ''}} {{fieldErrors.username ? 'login-field__control--error' : ''}}">
+          <input id="login-username" class="login-field__input" type="text" value="{{formData.username}}" placeholder="请输入账号" placeholder-class="login-field__placeholder" data-field="username" bindinput="handleInput" bindfocus="handleFocus" bindblur="handleBlur" disabled="{{loading}}" maxlength="-1" cursor-spacing="32" confirm-type="next" bindconfirm="focusPassword" aria-label="账号" />
+        </view>
+        <view class="login-field__error" wx:if="{{fieldErrors.username}}" role="alert">{{fieldErrors.username}}</view>
+      </view>
+
+      <view class="login-field">
+        <label class="login-field__label" for="login-password">密码</label>
+        <view class="login-field__control {{focusedField === 'password' ? 'login-field__control--focus' : ''}} {{fieldErrors.password ? 'login-field__control--error' : ''}}">
+          <input id="login-password" class="login-field__input" type="text" password="{{!showPassword}}" value="{{formData.password}}" placeholder="请输入密码" placeholder-class="login-field__placeholder" data-field="password" bindinput="handleInput" bindfocus="handleFocus" bindblur="handleBlur" focus="{{passwordFocus}}" disabled="{{loading}}" maxlength="-1" cursor-spacing="100" confirm-type="done" bindconfirm="login" aria-label="密码" />
+          <button class="login-password-toggle" bindtap="togglePassword" disabled="{{loading}}" hover-class="login-text--pressed" aria-label="{{showPassword ? '隐藏密码' : '显示密码'}}">{{showPassword ? '隐藏' : '显示'}}</button>
+        </view>
+        <view class="login-field__error" wx:if="{{fieldErrors.password}}" role="alert">{{fieldErrors.password}}</view>
+      </view>
+
+      <view class="login-form-error" wx:if="{{errorMessage}}" role="alert">{{errorMessage}}</view>
+      <button class="login-submit" bindtap="login" disabled="{{loading}}" loading="{{loading}}" hover-class="login-submit--pressed">{{loading ? '正在登录' : '立即登录'}}</button>
+    </view>
+
+    <button class="login-browse" bindtap="routeToHome" disabled="{{loading}}" hover-class="login-text--pressed">先逛逛<text class="login-browse__arrow" aria-hidden="true">›</text></button>
+    <view class="login-footer">随时随地，轻松快乐购</view>
   </view>
-  <t-button bgcolor="{{main_color}}" shape="circle" bind:click="login" loading="{{loading}}">{{loading?'登录中...':'立即登录'}}</t-button>
 </view>

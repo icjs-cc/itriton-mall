@@ -1,51 +1,60 @@
-<!--pages/mine/index.wxml-->
-<page id="page">
-	<t-nav-bar title="我的" visible="{{false}}" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" />
-	<view class="mine-wrap">
-		<view class="mine__bg" style="background-color:{{main_color}};background-image: url('/images/mine/header.png');">
-			<view class="mine__info" bindtap="{{userInfo.userId?'':'routeToLogin'}}">
-				<image class="mine__bg--avatar" src="/images/mine/avatar-v2.png"></image>
-				<view class="mine__info--cell">
-					<view class="mine__info--name">{{userInfo.userId?userInfo.nickname:'立即登录'}}</view>
-					<view class="mine__info--desc">{{userInfo.userId?today:'登录体验完整功能'}}</view>
-				</view>
-			</view>
-		</view>
-		<view class="mine__body">
-			<view class="mine-card">
-				<view class="mine-order-head">
-					<view class="mine-order-title">我的订单</view>
-					<view class="mine-order-more" data-status="all" bindtap="openOrders">查看全部</view>
-				</view>
-				<view class="mine-order-grid">
-					<view class="mine-order-item" data-status="unpaid" bindtap="openOrders">
-						<view class="mine-order-num">{{orderCount.unpaid}}</view>
-						<view class="mine-order-label">待付款</view>
-					</view>
-					<view class="mine-order-item" data-status="unshipped" bindtap="openOrders">
-						<view class="mine-order-num">{{orderCount.unshipped}}</view>
-						<view class="mine-order-label">待发货</view>
-					</view>
-					<view class="mine-order-item" data-status="unreceived" bindtap="openOrders">
-						<view class="mine-order-num">{{orderCount.unreceived}}</view>
-						<view class="mine-order-label">待收货</view>
-					</view>
-					<view class="mine-order-item" data-status="done" bindtap="openOrders">
-						<view class="mine-order-num">{{orderCount.done}}</view>
-						<view class="mine-order-label">已完成</view>
-					</view>
-				</view>
-			</view>
-			<view class="mine-card">
-				<t-cell open-type="{{item.openType}}" title="{{item.name}}" data-isauth="{{item.isauth}}" data-url="{{item.url}}" bind:click="routeToNext" t-class="mine-cell {{index+1===moduleList.length?'t-cell-plain':''}}" border="{{index+1!==moduleList.length}}" isLink wx:for="{{moduleList}}" wx:key="icon">
-					<iconfont slot="icon" icon="{{item.icon}}" color="{{main_color}}" size="40rpx" />
-				</t-cell>
-			</view>
-			<view class="mine-card">
-				<t-cell open-type="{{item.openType}}" title="{{item.name}}" data-isauth="{{item.isauth}}" data-url="{{item.url}}" bind:click="routeToNext" t-class="mine-cell {{index+1===moduleExtraList.length?'t-cell-plain':''}}" border="{{index+1!==moduleExtraList.length}}" isLink wx:for="{{moduleExtraList}}" wx:key="icon">
-					<iconfont slot="icon" icon="{{item.icon}}" color="{{main_color}}" size="40rpx" />
-				</t-cell>
-			</view>
-		</view>
-	</view>
+<page id="page" default-loading="{{false}}">
+  <view class="mine-wrap">
+    <view class="mine-content">
+      <button wx:if="{{!userInfo.userId}}" class="mine-profile" bindtap="routeToLogin" hover-class="mine-pressed" aria-label="立即登录，体验完整功能">
+        <image class="mine-avatar" src="/images/mine/avatar-v2.png" mode="aspectFill" aria-hidden="true" />
+        <view class="mine-profile__copy">
+          <view class="mine-profile__brand">{{project_cn}}</view>
+          <view class="mine-profile__name">立即登录</view>
+          <view class="mine-profile__desc">和小鲸一起，发现生活好物</view>
+        </view>
+        <view class="mine-profile__action" aria-hidden="true"><view class="mine-chevron" /></view>
+      </button>
+      <view wx:else class="mine-profile">
+        <image class="mine-avatar" src="/images/mine/avatar-v2.png" mode="aspectFill" aria-label="用户头像" />
+        <view class="mine-profile__copy">
+          <view class="mine-profile__brand">{{project_cn}}</view>
+          <view class="mine-profile__name mine-profile__nickname">{{userInfo.nickname || '小鲸用户'}}</view>
+          <view class="mine-profile__desc">欢迎回来，今天也有好物相伴</view>
+        </view>
+      </view>
+
+      <view class="mine-card mine-orders">
+        <view class="mine-card__head">
+          <view class="mine-card__title">我的订单</view>
+          <button class="mine-order-more" data-status="all" bindtap="openOrders" hover-class="mine-pressed" aria-label="查看全部订单">
+            全部订单<view class="mine-chevron mine-chevron--small" aria-hidden="true" />
+          </button>
+        </view>
+        <view class="mine-order-grid">
+          <button wx:for="{{orderEntries}}" wx:key="status" class="mine-order-item" data-status="{{item.status}}" bindtap="openOrders" hover-class="mine-pressed" aria-label="{{item.name}}，{{orderCount[item.status]}}笔订单">
+            <view class="mine-order-symbol" aria-hidden="true">
+              <view class="mine-order-icon mine-order-icon--{{item.status}}" />
+              <view wx:if="{{orderCount[item.status] > 0}}" class="mine-order-badge {{item.status === 'done' ? 'mine-order-badge--done' : ''}}">{{orderCount[item.status] > 99 ? '99+' : orderCount[item.status]}}</view>
+            </view>
+            <view class="mine-order-label">{{item.name}}</view>
+          </button>
+        </view>
+      </view>
+
+      <view class="mine-card mine-services">
+        <view class="mine-card__head">
+          <view class="mine-card__title">常用服务</view>
+          <view class="mine-card__hint">贴心服务，轻松购物</view>
+        </view>
+        <view class="mine-service-grid">
+          <button wx:for="{{services}}" wx:key="icon" class="mine-service" open-type="{{item.openType}}" data-isauth="{{item.isauth}}" data-url="{{item.url}}" bindtap="routeToNext" hover-class="mine-pressed" aria-label="{{item.name}}">
+            <view class="mine-service__icon" aria-hidden="true"><iconfont icon="{{item.icon}}" color="#946536" size="42rpx" /></view>
+            <view class="mine-service__name">{{item.name}}</view>
+          </button>
+        </view>
+      </view>
+
+      <view class="mine-footer">
+        <view class="mine-footer__rule" />
+        <text>好物相伴 · 悦享生活</text>
+        <view class="mine-footer__rule" />
+      </view>
+    </view>
+  </view>
 </page>

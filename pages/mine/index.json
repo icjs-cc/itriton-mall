@@ -1,7 +1,10 @@
 {
   "usingComponents": {
-    "iconfont": "/component/iconfont/index",
-    "t-cell": "/itriton/cell/index"
+    "iconfont": "/component/iconfont/index"
   },
-  "navigationStyle": "custom"
+  "navigationStyle": "default",
+  "navigationBarTitleText": "我的",
+  "navigationBarBackgroundColor": "#fff8ee",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#f8f7f4"
 }

@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "登录",
-  "usingComponents": {
-    "t-input": "/itriton/input/index",
-    "t-button": "/itriton/button/index"
-  }
+  "navigationBarBackgroundColor": "#fff8ee",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#fff8ee",
+  "usingComponents": {}
 }

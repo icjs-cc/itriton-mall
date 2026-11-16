@@ -7,29 +7,63 @@ Page({
   data: {
     ...app.globalData.theme,
     formData:{
-      username: null,
-      password: null
+      username: '',
+      password: ''
     },
+    focusedField: '',
+    passwordFocus: false,
+    showPassword: false,
+    fieldErrors: {},
+    errorMessage: '',
     loading: false
   },
+  handleInput(e) {
+    const field = e.currentTarget.dataset.field
+    if (field !== 'username' && field !== 'password') return
+    this.setData({
+      [`formData.${field}`]: e.detail.value,
+      [`fieldErrors.${field}`]: '',
+      errorMessage: ''
+    })
+  },
+  handleFocus(e) {
+    this.setData({ focusedField: e.currentTarget.dataset.field })
+  },
+  handleBlur(e) {
+    const field = e.currentTarget.dataset.field
+    const updates = {}
+    if (this.data.focusedField === field) updates.focusedField = ''
+    if (field === 'password') updates.passwordFocus = false
+    this.setData(updates)
+  },
+  focusPassword() {
+    this.setData({ passwordFocus: true })
+  },
+  togglePassword() {
+    this.setData({ showPassword: !this.data.showPassword })
+  },
   login(){
+    if (this.data.loading) return
     let formData = this.clone(this.data.formData)
     if (!this.wxValidate.checkForm(formData)) {
-      const error = this.wxValidate.errorList[0]
-      this.$showToast(error.msg)
+      const fieldErrors = {}
+      this.wxValidate.errorList.forEach((error) => {
+        fieldErrors[error.param] = error.msg
+      })
+      this.setData({ fieldErrors, errorMessage: '' })
       return false
     }
-    this.setData({loading: true})
-    login(formData).then((res) => {
+    this.setData({loading: true, fieldErrors: {}, errorMessage: ''})
+    return login(formData).then((res) => {
       if (!res || !res.success) {
-        this.$showToast((res && res.message) || '登录失败')
+        this.setData({ errorMessage: (res && res.message) || '登录失败，请检查账号和密码' })
         return null
       }
       const token = res.data.authorization
       this.setStorage('token', token)
       return getUserInfo({ userId: res.data.userId }).then((info) => {
         if (!info || !info.success) {
-          this.$showToast((info && info.message) || '获取用户信息失败')
+          this.setData({ errorMessage: (info && info.message) || '获取用户信息失败，请重试' })
           return
         }
         const userInfo = info.data.user
@@ -47,7 +81,7 @@ Page({
         this.routeToHome()
       })
     }).catch((error) => {
-      this.$showToast((error && error.message) || '登录失败，请稍后重试')
+      this.setData({ errorMessage: (error && error.message) || '登录失败，请稍后重试' })
     }).finally(() => {
       this.setData({ loading: false })
     })
