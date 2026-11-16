@@ -3,21 +3,26 @@ const app = getApp()
 Page({
   ...app.globalData.function,
   data: {
-    ...app.globalData.config,
+    ...app.globalData.theme,
     subsectionList:[
       {name: '自提', key: 1},
       {name: '配送', key: 2},
     ],
     shoppingCartList: [
-      {name: '贴布日式圆盘特殊日本木质茶盘', spec: '默认', url: images.goods1, price: '198', num: 1},
-      {name: '商务办公用茶-水仙', spec: '一斤装', url: images.goods2, price: '122', num: 2},
+      {id: 1, name: '贴布日式圆盘特殊日本木质茶盘', spec: '默认', url: images.goods1, price: 198, num: 1},
+      {id: 2, name: '商务办公用茶-水仙', spec: '一斤装', url: images.goods2, price: 122, num: 2},
     ],
     info:{
       1:{
         name:'黄先生',
-        phone: null,
+        phone: '',
         address:'福建省厦门市思明区湖滨南路227号之7号（屋后茶山香苑）'
       },
+      2:{
+        name: '',
+        phone: '',
+        address: ''
+      }
     },
     current: 1,
     totalNum:0,
@@ -27,62 +32,69 @@ Page({
     discountId:0,
   },
   onLoad(options){
-    let discountPrice = options.discountPrice || 0;
-    this.setData({discountPrice})
-   setTimeout(()=>{
-      this.computedData();
-      this.setData({
-        current: 1,
-      })
-   },1000)
+    const discountPrice = Number(options.discountPrice) || 0
+    const checkoutGoods = this.getStorage('checkoutGoods')
+    const data = { discountPrice, current: 1 }
+    if (Array.isArray(checkoutGoods) && checkoutGoods.length) {
+      data.shoppingCartList = checkoutGoods
+    }
+    this.setData(data)
+    this.computedData()
   },
   // 计算价格
   computedData(){
-    let totalNum = 0;
-    let totalPrice = 0;
-    let confirmPrice = 0;
-    this.data.shoppingCartList.forEach(ele =>{
-      totalNum += ele.num;
-      totalPrice += ele.num * ele.price;
-    });
-    confirmPrice = totalPrice - this.data.discountPrice;
+    let totalNum = 0
+    let totalPrice = 0
+    this.data.shoppingCartList.forEach((ele) => {
+      const num = Number(ele.num) || 0
+      const price = Number(ele.price) || 0
+      totalNum += num
+      totalPrice += num * price
+    })
+    const discountPrice = Number(this.data.discountPrice) || 0
+    const confirmPrice = Math.max(totalPrice - discountPrice, 0)
     this.setData({
       totalNum,
-      totalPrice,
-      confirmPrice
+      totalPrice: totalPrice.toFixed(2),
+      confirmPrice: confirmPrice.toFixed(2)
     })
   },
   bindInputNumber(e){
-    let num = e.detail.value
-    let shoppingCartList = this.data.shoppingCartList
-    const index = e.currentTarget.dataset.index
-    if(num===0){
-      this.$showModal({content: '确定要删除此商品？'}).then(res=>{
-        if(res.confirm){
-          console.log("确认删除")
-        }else{
-          shoppingCartList[index].num = 1
-          this.setData({shoppingCartList})
-          console.log("取消删除")
+    const num = Number(e.detail.value)
+    const index = Number(e.currentTarget.dataset.index)
+    const current = this.data.shoppingCartList[index]
+    if (!current) return
+    if (num <= 0) {
+      this.$showModal({ content: '确定要删除此商品？' }).then((res) => {
+        if (!res.confirm) {
+          this.setData({ [`shoppingCartList[${index}].num`]: current.num })
+          return
         }
+        const shoppingCartList = this.data.shoppingCartList.filter((item) => item.id !== current.id)
+        this.setData({ shoppingCartList })
+        this.computedData()
       })
+      return
     }
-    shoppingCartList[index].num = num
-    this.setData({
-      shoppingCartList
-    });
-    this.computedData();
+    this.setData({ [`shoppingCartList[${index}].num`]: num })
+    this.computedData()
   },
   // 分段器change方法
   subsectionChange(e){
     this.setData({current:e.detail})
   },
   confirm(){
-    this.$showModal({content: '确定支付'}).then(res=>{
-      if(res.confirm){
-        console.log("确定支付")
-      }else{
-        console.log("取消支付")
+    if (!this.data.shoppingCartList.length) {
+      this.$showToast('请先选择商品')
+      return
+    }
+    if (this.data.current === 2 && !this.data.info[2].name) {
+      this.$showToast('请添加收货地址')
+      return
+    }
+    this.$showModal({ content: '确定支付' }).then((res) => {
+      if (res.confirm) {
+        this.$showToast('支付功能开发中')
       }
     })
   }

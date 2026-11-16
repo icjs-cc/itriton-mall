@@ -8,11 +8,11 @@
 }
 
 .t-avatar-square {
-  border-radius: 8rpx;
+  border-radius: var(--radius, 16rpx);
 }
 
 .t-avatar-rectangle {
-  border-radius: 8rpx;
+  border-radius: var(--radius, 16rpx);
 }
 
 .t-avatar-circle {

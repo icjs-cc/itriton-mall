@@ -22,7 +22,7 @@
   font-size: 24rpx;
   width: 150rpx;
   height: 64rpx;
-  color: #666666;
+  color: var(--color-text-secondary, #888);
   text-align: center;
   overflow: hidden;
 	text-overflow: ellipsis;

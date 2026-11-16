@@ -18,7 +18,7 @@
   width: 300rpx;
   padding: 5rpx 20rpx;
   height: 60rpx;
-  border-radius: 10rpx;
+  border-radius: var(--radius, 16rpx);
   background: #f3f3f3;
   display: flex;
   align-items: center;
@@ -29,7 +29,7 @@ input {
   width: auto;
   height: 100%;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius, 16rpx);
   font-size: 28rpx;
   background: #f3f3f3;
   flex: 1;

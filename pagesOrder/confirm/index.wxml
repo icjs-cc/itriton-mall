@@ -22,7 +22,7 @@
   <view class="confirm-address-line" style="background:url('../../images/order/order_border.png')"></view>
 </view>
 <view class="confirm-wrap mt-20">
-  <t-cell wx:for="{{shoppingCartList}}" wx:key="unique">
+  <t-cell wx:for="{{shoppingCartList}}" wx:key="id">
     <view slot='icon' class="flex align-center">
       <t-image class="confirm-wrap-image" src="{{item.url}}"></t-image>
     </view>

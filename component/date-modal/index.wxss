@@ -20,7 +20,7 @@
   z-index: 9999999;
   background: #fafafa;
   margin: 0 21% 0 21%;
-  border-radius: 3px;
+  border-radius: var(--radius, 16rpx);
 }
 
 .title {
@@ -57,7 +57,7 @@
   width: 100%;
   padding: 10rpx;
   text-align: center;
-  border-radius: 5rpx;
+  border-radius: var(--radius, 16rpx);
   margin-right: 30rpx;
 }
 
@@ -67,7 +67,7 @@
   background-color: white;
   border-left: 1rpx solid #f0f0f0;
   text-align: center;
-  border-radius: 5rpx;
+  border-radius: var(--radius, 16rpx);
 }
 
 .btn-disabled{
@@ -113,6 +113,6 @@
   display: flex;
   align-items: center;
   border: 1px solid #999999;
-  border-radius: 5rpx;
+  border-radius: var(--radius, 16rpx);
   padding: 10rpx 20rpx;
 }

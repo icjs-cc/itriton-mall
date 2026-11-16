@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   ...app.globalData.function,
   data: {
-    ...app.globalData.config,
+    ...app.globalData.theme,
   },
   handleOperate(e) {
     console.log(e)

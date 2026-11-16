@@ -21,7 +21,7 @@
   z-index: 1001;
   background: #fafafa;
   margin: 0 12% 0 12%;
-  border-radius: 3px;
+  border-radius: var(--radius, 16rpx);
 }
 
 .title {

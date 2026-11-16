@@ -1,59 +1,122 @@
-/* pages/mine/index.wxss */
-.mine__bg{
-  height: 280rpx;
-  background-size: 100% 100%;
+.mine-wrap {
+  min-height: 100%;
+  padding-bottom: 48rpx;
 }
 
-.mine__info{
+.mine__bg {
+  position: relative;
+  height: 240rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+}
+
+.mine__info {
   position: absolute;
-  margin-top: 40rpx;
-  margin-left: 50rpx;
+  left: 40rpx;
+  right: 32rpx;
+  bottom: 76rpx;
   display: flex;
+  align-items: center;
 }
 
-.mine__info--cell{
+.mine__bg--avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 255, 255, 0.92);
+  box-sizing: border-box;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.mine__info--cell {
+  margin-left: 24rpx;
+  min-width: 0;
+}
+
+.mine__info--name {
+  font-size: 36rpx;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.mine__info--desc {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.mine__body {
+  position: relative;
+  z-index: 2;
+  margin-top: -48rpx;
+  padding: 0 24rpx;
+}
+
+.mine-card {
+  background: #fff;
+  border-radius: var(--radius, 16rpx);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.mine-card + .mine-card {
+  margin-top: 20rpx;
+}
+
+.mine-order-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 28rpx 8rpx;
+}
+
+.mine-order-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.mine-order-more {
+  padding: 6rpx 18rpx;
+  border-radius: 999rpx;
+  background: #f6f6f6;
+  font-size: 24rpx;
+  line-height: 1.4;
+  color: #888;
+}
+
+.mine-order-grid {
+  display: flex;
+  padding: 20rpx 8rpx 28rpx;
+}
+
+.mine-order-item {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-left: 20rpx;
+  align-items: center;
 }
 
-.mine__info--name{
-  font-size: 35rpx;
-  color: #FFFFFF;
+.mine-order-num {
+  font-size: 36rpx;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #333;
 }
 
-.mine__info--desc{
-  font-size: 28rpx;
-  color: #FFFFFF;
+.mine-order-label {
   margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #888;
 }
 
-.mine__bg--avatar{
-  width: 110rpx;
-  height: 110rpx;
-  border: 5rpx solid #FFFFFF;
-  border-radius: 50%;
-}
-
-.mine__order{
-  background: #FFF;
-}
-
-.mine__cell-wrap{
-  padding: 0 25rpx;
-  margin-top: -60rpx;
-}
-
-.mine__cell{
-  box-shadow: 0 0 8rpx rgba(0, 0, 0, 0.01);
-  border-radius: 8rpx !important;
-}
-
-.official-account{
-  position: fixed;
-  bottom: 25rpx;
-  padding: 0 25rpx;
-  width: 705rpx;
-
+.mine-cell {
+  padding: 26rpx 24rpx !important;
+  margin: 0;
+  background: #fff;
+  border-radius: 0 !important;
 }

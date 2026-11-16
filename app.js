@@ -11,6 +11,7 @@ App({
     function: {
       ...collection
     },
-    config
+    config,
+    theme: config.theme
   },
 })

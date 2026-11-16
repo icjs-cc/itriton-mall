@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "coupon": "/biz-component/coupon/index",
+    "coupon": "/pagesOrder/components/coupon/index",
     "subsection": "/component/subsection/index",
     "iconfont": "/component/iconfont/index",
     "t-cell": "/itriton/cell/index",

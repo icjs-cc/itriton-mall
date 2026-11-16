@@ -3,14 +3,14 @@
   width: 345rpx;
   height: 520rpx;
   background: #FFFFFF;
-  border-radius: 16rpx;
+  border-radius: var(--radius, 16rpx);
   margin-bottom: 20rpx;
 }
 
 .goods-image {
   width: 345rpx;
   height: 345rpx;
-  border-radius: 16rpx 16rpx 0 0;
+  border-radius: var(--radius, 16rpx) var(--radius, 16rpx) 0 0;
 }
 
 .goods-content{

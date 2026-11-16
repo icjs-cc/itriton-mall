@@ -9,10 +9,12 @@ Component({
   data: {
     loading: true
   },
-  attached(){
-    this.setData({
-      loading: this.properties.defaultLoading
-    })
+  lifetimes: {
+    attached() {
+      this.setData({
+        loading: this.properties.defaultLoading
+      })
+    }
   },
   methods: {
     showLoading(){

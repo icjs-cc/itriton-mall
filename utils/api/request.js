@@ -1,96 +1,62 @@
-import { skipNulls } from '../util.js';
+import { skipNulls } from '../util.js'
 
-/**
-  1.引入要调用GET,POST,PUT,DELETE方法
-		const { postRequest } = require('../request.js')
-	2.编写业务接口方法
-		export const login = (params) => {
-			return postRequest('/auth/login', params, true)
-		}
-	3.页面引入业务接口
-		import { login } from '../../utils/api/modules/security.js'
-	4.页面使用业务接口
-		login({
-			userName: 'admin',
-			password: 123456
-		}).then(res => {
-			console.log('success', res)
-		}).catch(error => {
-			console.log('error', '出错啦～')
-		})
- */
 const config = require('../config.js')
-const {
-	getStorage
-} = require('../storage.js')
-const {
-	routeToLogin
-} = require('../router.js')
+const { getStorage } = require('../storage.js')
+const { routeToLogin } = require('../router.js')
 
-// 添加事件结束
-Promise.prototype.finally = function(callback) {
-	var Promise = this.constructor;
-	return this.then(
-		function(value) {
-			Promise.resolve(callback()).then(
-				function() {
-					return value
-				}
-			)
-		},
-		function(reason) {
-			Promise.resolve(callback()).then(
-				function() {
-					throw reason
-				}
-			)
-		}
-	)
+// 低版本基础库没有 Promise.finally，登录等流程依赖它收起 loading
+if (typeof Promise.prototype.finally !== 'function') {
+	Promise.prototype.finally = function (callback) {
+		const PromiseCtor = this.constructor
+		return this.then(
+			(value) => PromiseCtor.resolve(callback()).then(() => value),
+			(reason) => PromiseCtor.resolve(callback()).then(() => {
+				throw reason
+			})
+		)
+	}
 }
 
-const request = ({
-	url,
-	data,
-	method,
-	contentType
-}) => {
+const request = ({ url, data, method, contentType }) => {
+	const token = getStorage('token')
+	const header = {
+		'content-type': contentType || 'application/json'
+	}
+	if (token) {
+		header.token = token
+	}
+
 	return new Promise((resolve, reject) => {
 		wx.request({
 			url: `${config[config.dev_env].url}${url}`,
-			data: data,
-			method: method,
-			header: {
-				'content-type': contentType || 'application/json',
-				'token': getStorage('token')
-			},
+			data,
+			method,
+			header,
+			timeout: 15000,
 			success: (res) => {
-				// 返回成功提示信息
-				if (res.statusCode === 200) {
-					// 未登录拦截
-					if (res.data.code === 401) {
-						routeToLogin('redirectTo')
-					} else {
-						resolve(res.data)
-					}
-				} else {
-					// 返回错误提示信息
-					reject(res.data)
+				const body = res.data
+				if (res.statusCode !== 200) {
+					reject(body || { message: '系统开小差了，请联系在线客服哦~' })
+					return
 				}
+				if (body && body.code === 401) {
+					routeToLogin('redirectTo')
+					reject(body)
+					return
+				}
+				resolve(body)
 			},
-			fail: (res) => {
-				// 返回错误提示信息
-				reject('系统开小差了，请联系在线客服哦~')
-			},
-			complete: () => {}
+			fail: () => {
+				reject({ message: '系统开小差了，请联系在线客服哦~' })
+			}
 		})
 	})
 }
 
 export const getRequest = (url, data) => {
-	data = skipNulls(data)
 	return request({
 		url,
-		data,
+		data: skipNulls(data),
 		method: 'GET'
 	})
 }

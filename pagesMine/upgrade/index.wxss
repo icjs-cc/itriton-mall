@@ -63,7 +63,7 @@ page{
 .version-badge {
   display: inline-block;
   padding: 0 20rpx;
-  border-radius: 22rpx;
+  border-radius: 999rpx;
   font-size: 32rpx;
   font-family: "Helvetica Neue";
   line-height: 40rpx;

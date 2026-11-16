@@ -1,7 +1,7 @@
 /* component/subsection/index.wxss */
 .subsection-wrap {
   border: 2rpx solid;
-  border-radius: 16rpx;
+  border-radius: var(--radius, 16rpx);
   display: flex;
   flex-direction: row;
 }
@@ -16,9 +16,9 @@
 }
 
 .subsection-item:first-child{
-  border-radius: 14rpx 0 0 14rpx;
+  border-radius: calc(var(--radius, 16rpx) - 2rpx) 0 0 calc(var(--radius, 16rpx) - 2rpx);
 }
 .subsection-item:last-child{
-  border-radius: 0 14rpx 14rpx 0;
+  border-radius: 0 calc(var(--radius, 16rpx) - 2rpx) calc(var(--radius, 16rpx) - 2rpx) 0;
   border-right: none;
 }

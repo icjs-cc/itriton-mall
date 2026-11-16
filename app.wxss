@@ -3,10 +3,37 @@
 @import "./styles/common.wxss";
 
 page {
-  background: #f5f5f5;
-  font-family: "微软雅黑", "华文细黑", Arial, Helvetica, sans-serif;
+  --radius: 16rpx;
+  --color-primary: #DCAA6B;
+  --color-text: #333333;
+  --color-text-secondary: #888888;
+  --color-text-placeholder: #bbbbbb;
+  --color-price: #e54d42;
+  --color-border: #f0f0f0;
+  --color-bg: #f5f5f5;
+  --color-card: #ffffff;
+  --shadow-card: 0 8rpx 24rpx rgba(0, 0, 0, 0.05);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 28rpx;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
   height: 100%;
   width: 100%;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border-radius: 0;
+}
+
+button::after {
+  border: none;
 }
 
 .container {
@@ -24,7 +51,7 @@ page {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #bfbfbf;
+  color: var(--color-text-placeholder);
   flex: 1;
   font-size: 28rpx;
 }
@@ -484,7 +511,7 @@ page {
 }
 
 .self-center {
-	align-self: flex-center;
+	align-self: center;
 }
 
 .self-end {
@@ -493,10 +520,6 @@ page {
 
 .self-stretch {
 	align-self: stretch;
-}
-
-.align-stretch {
-	align-items: stretch;
 }
 
 .justify-start {
@@ -531,7 +554,7 @@ page {
 .grid.grid-square>view {
 	margin-right: 20rpx;
 	margin-bottom: 20rpx;
-	border-radius: 6rpx;
+	border-radius: var(--radius, 16rpx);
 	position: relative;
 	overflow: hidden;
 }
@@ -716,7 +739,7 @@ page {
 
 .bg-gray {
 	background-color: #f0f0f0;
-	color: #333;
+	color: var(--color-text);
 }
 
 .bg-black {
@@ -725,8 +748,8 @@ page {
 }
 
 .bg-white {
-	background-color: #fff;
-	color: #666;
+	background-color: var(--color-card);
+	color: var(--color-text);
 }
 
 .bg-shadeTop {
@@ -897,15 +920,15 @@ page {
 /*边框样式*/
 
 .border-l {
-	border-left: 1rpx solid #f3f3f3 !important;
+	border-left: 1rpx solid var(--color-border) !important;
 }
 
 .border-r {
-	border-right: 1rpx solid #f3f3f3 !important;
+	border-right: 1rpx solid var(--color-border) !important;
 }
 
 .border-t {
-	border-top: 1rpx solid #f3f3f3 !important;
+	border-top: 1rpx solid var(--color-border) !important;
 }
 
 .border-t-0 {
@@ -913,7 +936,7 @@ page {
 }
 
 .border-b {
-	border-bottom: 1rpx solid #f3f3f3 !important;
+	border-bottom: 1rpx solid var(--color-border) !important;
 }
 
 .border-b-0 {
@@ -921,7 +944,7 @@ page {
 }
 
 .border {
-	border: 1rpx solid #f3f3f3 !important;
+	border: 1rpx solid var(--color-border) !important;
 }
 
 .border-0 {
@@ -929,23 +952,23 @@ page {
 }
 
 .dashed-l {
-	border-left: 2rpx dashed #f3f3f3 !important;
+	border-left: 2rpx dashed var(--color-border) !important;
 }
 
 .dashed-r {
-	border-right: 2rpx dashed #f3f3f3 !important;
+	border-right: 2rpx dashed var(--color-border) !important;
 }
 
 .dashed-t {
-	border-top: 2rpx dashed #f3f3f3 !important;
+	border-top: 2rpx dashed var(--color-border) !important;
 }
 
 .dashed-b {
-	border-bottom: 2rpx dashed #f3f3f3 !important;
+	border-bottom: 2rpx dashed var(--color-border) !important;
 }
 
 .dashed {
-	border: 2rpx dashed #f3f3f3 !important;
+	border: 2rpx dashed var(--color-border) !important;
 }
 
 .text-xxs {
@@ -996,6 +1019,10 @@ page {
 	text-transform: Lowercase;
 }
 
+.text-price {
+	color: var(--color-price);
+}
+
 .text-price::before {
 	content: "¥";
 	font-size: 80%;
@@ -1023,7 +1050,7 @@ page {
 }
 
 .text-red {
-	color: #e54d42;
+	color: var(--color-price);
 }
 
 .text-orange {
@@ -1035,7 +1062,7 @@ page {
 }
 
 .text-viridity {
-	color: #01c732
+	color: #01c732;
 }
 
 .text-olive {
@@ -1071,48 +1098,19 @@ page {
 }
 
 .text-grey {
-	color: #8799a3;
+	color: var(--color-text-secondary);
 }
 
 .text-gray {
-	color: #888888;
+	color: var(--color-text-secondary);
 }
 
 .text-black {
-	color: #333;
+	color: var(--color-text);
 }
 
 .text-white {
 	color: #fff;
-}
-
-.border-radius-top {
-	border-radius: 8rpx 8rpx 0 0 !important;
-}
-
-.border-radius-bottom {
-	border-radius: 0 0 8rpx 8rpx !important;
-}
-
-.border-radius-left {
-	border-radius: 8rpx 0 0 8rpx !important;
-}
-
-.border-radius-right {
-	border-radius: 0 8rpx 8rpx 0 !important;
-}
-
-.border-radius {
-	border-radius: 8rpx !important;
-}
-
-.box-shadow {
-	box-shadow: 0px 0px 8rpx 0px rgba(0, 0, 0, 0.1);
-}
-
-.box-shadow-radius {
-	box-shadow: 0px 0px 8rpx 0px rgba(0, 0, 0, 0.1);
-	border-radius: 10rpx !important;
 }
 
 .divider:not(:last-child)::after {

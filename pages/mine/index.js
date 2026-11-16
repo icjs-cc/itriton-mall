@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   ...app.globalData.function,
   data: {
-    ...app.globalData.config,
+    ...app.globalData.theme,
     userInfo: {},
     today: null,
     moduleList: [
@@ -22,14 +22,12 @@ Page({
   onShow() {
     const today = this.formatDate(new Date(), 'yyyy-MM-dd')
     this.setData({
-      userInfo: this.getStorage('userInfo'),
+      userInfo: this.getStorage('userInfo') || {},
       today
     })
   },
-  onLoad(){
-    setTimeout(()=>{
-      this.selectComponent("#page").hideLoading()
-    },2000)
+  onReady() {
+    this.hidePageLoading()
   },
   onShareAppMessage(res) {
     if (res.from === 'button') {

@@ -8,7 +8,7 @@
   height: 152rpx !important;
   background: rgba(0, 0, 0, 0);
   border: 1rpx solid #E5E9E8;
-  border-radius: 16rpx;
+  border-radius: var(--radius, 16rpx);
 }
 
 .specs-title {
@@ -26,7 +26,7 @@
 .specs-name {
   color: #888888;
   border: 1rpx solid #888888;
-  border-radius: 10rpx;
+  border-radius: var(--radius, 16rpx);
   padding: 15rpx 20rpx;
   font-size: 28rpx;
   margin-right: 15rpx;

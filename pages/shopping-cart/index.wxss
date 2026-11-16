@@ -5,7 +5,7 @@
   background: rgba(0, 0, 0, 0);
   border: 1rpx solid #E5E9E8;
   opacity: 1;
-  border-radius: 16rpx;
+  border-radius: var(--radius, 16rpx);
 }
 
 .shopping-cart-price {
@@ -17,7 +17,7 @@
 }
 
 .button-submit>button {
-  border-radius: 50rpx !important;
+  border-radius: 999rpx !important;
   box-shadow: 0 5rpx 10rpx rgba(0, 0, 0, 0.09) !important;
   height: 75rpx !important;
   line-height: 75rpx !important;

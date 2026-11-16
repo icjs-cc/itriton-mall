@@ -3,8 +3,9 @@
 <view class="p-20">
   <view class="about border-radius box-shadow">
     <view class="about-header">
-      <image class="about-header__image" src="../../images/common/qrcode.jpg"></image>
+      <image class="about-header__image" mode="widthFix" src="../../images/common/qrcode.jpeg"></image>
       <view class="about-header__text">微信号：{{wechatCode}}</view>
+      <view class="about-header__desc">福建 厦门</view>
     </view>
     <view class="about-content">
       <view>简单不先于复杂，而是在复杂之后，互联网世界的平凡码农一枚，热爱编程、喜欢美好的事物、强迫症~</view>

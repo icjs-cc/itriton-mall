@@ -4,7 +4,7 @@ const app = getApp()
 Page({
   ...app.globalData.function,
   data: {
-    ...app.globalData.config,
+    ...app.globalData.theme,
     noticeList: [],
     searchForm:{
       noticeTitle: null

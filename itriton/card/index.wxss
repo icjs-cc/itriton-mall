@@ -6,7 +6,7 @@
   overflow: hidden;
   position: relative;
   background: #fff;
-  border-radius: 8rpx;
+  border-radius: var(--radius, 16rpx);
 }
 
 .t-card-full {

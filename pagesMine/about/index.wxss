@@ -1,12 +1,10 @@
 /* pages/mine/about/index.wxss */
 .about{
   background: white;
-  padding: 10rpx 20rpx;
-  height: 1000rpx;
+  padding: 40rpx 24rpx 48rpx;
 }
 
 .about-header{
-  margin-top: 80rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,16 +12,21 @@
 }
 
 .about-header__image{
-  height: 350rpx;
-  width: 350rpx;
+  width: 100%;
   display: block;
-  background: rgb(216, 216, 216);
+  background: transparent;
 }
 
 .about-header__text{
   font-size: 28rpx;
-  padding: 10rpx 0 30rpx 0;
-  color: #666666;
+  padding: 24rpx 0 0;
+  color: var(--color-text, #333);
+}
+
+.about-header__desc{
+  font-size: 24rpx;
+  padding: 8rpx 0 12rpx;
+  color: var(--color-text-secondary, #888);
 }
 
 .about-content{

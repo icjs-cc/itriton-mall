@@ -18,12 +18,12 @@
   height: 90rpx;
   width: 90rpx;
   margin-right: 20rpx;
-  border-radius: 6rpx;
+  border-radius: var(--radius, 16rpx);
 }
 
 .switch-account__status{
   width: 110rpx;
-  border-radius: 5rpx;
+  border-radius: var(--radius, 16rpx);
   text-align: center;
   font-size: 24rpx;
 }

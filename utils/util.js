@@ -160,7 +160,7 @@ export const isEmpty = (value) => {
     return !value.length;
   } else if (isPlainObject(value)) {
     for (let key in value) {
-      if (hasOwnProperty.call(value, key)) {
+      if (Object.prototype.hasOwnProperty.call(value, key)) {
         return false;
       }
     }
@@ -171,14 +171,8 @@ export const isEmpty = (value) => {
 
 //获取某个对象在数组中的索引值
 export const objectIndexInArray = (array, item, param) => {
-  var index = -1
-  for (var i in array) {
-    if (array[i][param] === item[param]) {
-      index = i
-      break
-    }
-  }
-  return index
+  if (!Array.isArray(array) || !item) return -1
+  return array.findIndex((row) => row && row[param] === item[param])
 }
 
 /**

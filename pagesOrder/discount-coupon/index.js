@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   ...app.globalData.function,
   data: {
-    ...app.globalData.config,
+    ...app.globalData.theme,
     couponList:[
       {price: 10, title: '无门槛优惠券1', desc: '满100元减10元', date: '2020.07.15-2020.07.18', overTime: true, id: 1},
       {price: 20, title: '无门槛优惠券2', desc: '满100元减20元', date: '2020.07.15-2022.07.18', overTime: false, checked: false, id: 2},
@@ -16,7 +16,6 @@ Page({
   onLoad(options){
     let flag = options.flag;
     let discountId = options.discountId;
-    console.log(options)
     let couponList = this.data.couponList;
     let discountPrice = this.data.discountPrice;
     couponList.forEach((ele,index) =>{

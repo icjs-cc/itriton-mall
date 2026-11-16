@@ -43,7 +43,7 @@ Component({
         `background: ${this.properties.bgColor}`,
         `border: 1rpx solid ${this.properties.border}`,
         `color: ${this.properties.color}`,
-        `border-radius:${this.properties.shape == 'circle' ? (this.properties.height / 1.8):10}rpx`,
+        `border-radius:${this.properties.shape == 'circle' ? (this.properties.height / 1.8):16}rpx`,
         `line-height:${this.properties.height}rpx`,
         `opacity: ${this.properties.opacity}`
       ].join(';')

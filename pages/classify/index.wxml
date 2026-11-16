@@ -5,13 +5,13 @@
     <t-search-bar placeholder="搜索商城内所有商品" is-border="{{false}}"></t-search-bar>
   </view>
   <t-tabs direction="vertical" offset="{{offset}}" current="{{current}}" color="{{main_color}}" bindchange="handleChange">
-    <t-tab key="{{item.key}}" wx:for="{{tabList}}" title="{{item.name}}" wx:key="unique"></t-tab>
+    <t-tab key="{{item.key}}" wx:for="{{tabList}}" title="{{item.name}}" wx:key="key"></t-tab>
     <view class="p-10" slot="content">
       <view class="bg-white p-20 border-radius">
         <view>
           <view class="classify-title">精品茶具</view>
           <view class="flex flex-wrap">
-            <view class="classify-cell" wx:for="{{list}}" wx:key="unique">
+            <view class="classify-cell" wx:for="{{list}}" wx:key="id">
               <t-image src="{{item.url}}" t-class="classify-image"></t-image>
               <view class="classify-name">{{item.name}}</view>
             </view>

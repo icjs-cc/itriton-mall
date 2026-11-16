@@ -6,11 +6,11 @@ Component({
   properties: {
     mainColor: {
       type: String,
-      default: ''
+      value: ''
     },
     subColor: {
       type: String,
-      default: ''
+      value: ''
     }
   },
   data: {

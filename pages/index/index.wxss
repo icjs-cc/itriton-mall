@@ -8,7 +8,7 @@
 
 .nav__cell {
   padding: 20rpx;
-  border-radius: 12rpx;
+  border-radius: var(--radius, 16rpx);
   width: 40%;
   margin: 0 2% 40rpx;
   background-size: cover;
@@ -26,7 +26,7 @@
   height: 100%;
   left: 0;
   bottom: -10%;
-  border-radius: 10rpx;
+  border-radius: var(--radius, 16rpx);
   opacity: 0.2;
   transform: scale(0.9, 0.9);
 }

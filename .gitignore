@@ -1,1 +1,5 @@
 .idea
+.DS_Store
+project.private.config.json
+node_modules
+miniprogram_npm

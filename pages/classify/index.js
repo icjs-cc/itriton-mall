@@ -1,66 +1,63 @@
-// pages/classify/index.js
 import images from '../../utils/images.js'
 const app = getApp()
 Page({
+  ...app.globalData.function,
   data: {
-    ...app.globalData.config,
+    ...app.globalData.theme,
     tabList: [
-      {name: '礼品系列', key: '1'},
-      {name: '花茶系列', key: '2'},
-      {name: '办公用茶', key: '3'},
-      {name: '茶具茶生活', key: '4'},
-      {name: '存茶(收藏)', key: '5'},
-      {name: '预定款', key: '6'},
+      { name: '礼品系列', key: '1' },
+      { name: '花茶系列', key: '2' },
+      { name: '办公用茶', key: '3' },
+      { name: '茶具茶生活', key: '4' },
+      { name: '存茶(收藏)', key: '5' },
+      { name: '预定款', key: '6' },
     ],
     current: '1',
     offset: '0rpx',
-    offsetTimeout: null,
     list: [
-      {name: '茶盘', url: images.classify1},
-      {name: '茶荷', url: images.classify2},
-      {name: '烧水壶', url: images.classify3},
-      {name: '茶巾', url: images.classify4},
-      {name: '茶盘', url: images.classify1},
-      {name: '茶荷', url: images.classify2},
-      {name: '烧水壶', url: images.classify3},
-      {name: '茶巾', url: images.classify4},
+      { id: 1, name: '茶盘', url: images.classify1 },
+      { id: 2, name: '茶荷', url: images.classify2 },
+      { id: 3, name: '烧水壶', url: images.classify3 },
+      { id: 4, name: '茶巾', url: images.classify4 },
+      { id: 5, name: '茶盘', url: images.classify1 },
+      { id: 6, name: '茶荷', url: images.classify2 },
+      { id: 7, name: '烧水壶', url: images.classify3 },
+      { id: 8, name: '茶巾', url: images.classify4 },
     ]
   },
-  getOffset(){
-      const offsetTimeout = setTimeout(() => {
-        let query = wx.createSelectorQuery();
-        query.select('.header').boundingClientRect(rect=>{
-          try{
-            let clientHeight = rect.height;
-            let clientWidth = rect.width;
-            let ratio = 750 / clientWidth;
-            let height = clientHeight * ratio;
-            this.setData({
-              offset: `${height||0}rpx`
-            })
-          }catch(e){
-            console.log("ERROR:获取分类页头部高度失败")
-          }
-        }).exec();
-      }, 300)
-      this.setData({offsetTimeout})
-    
+  getOffset() {
+    if (this._offsetTimer) clearTimeout(this._offsetTimer)
+    this._offsetTimer = setTimeout(() => this.measureOffset(0), 30)
   },
-  handleChange({ detail }){
+  measureOffset(retry) {
+    wx.createSelectorQuery()
+      .select('.header')
+      .boundingClientRect((rect) => {
+        if ((!rect || !rect.width) && retry < 5) {
+          this._offsetTimer = setTimeout(() => this.measureOffset(retry + 1), 50)
+          return
+        }
+        if (!rect || !rect.width) return
+        const offset = `${Math.round(rect.height * (750 / rect.width))}rpx`
+        if (offset !== this.data.offset) {
+          this.setData({ offset })
+        }
+      })
+      .exec()
+  },
+  handleChange({ detail }) {
     this.setData({
       current: detail.key
     })
   },
-  onLoad(){
-    setTimeout(()=>{
-      this.selectComponent("#page").hideLoading()
-      this.getOffset() // 计算头部高度
-    },2000)
+  onReady() {
+    this.hidePageLoading()
+    this.getOffset()
   },
-  onShow(){
-    this.getOffset() // 计算头部高度
+  onShow() {
+    this.getOffset()
   },
-  onUnload(){
-    if(this.data.offsetTimeout) clearTimeout(this.data.offsetTimeout)
+  onUnload() {
+    if (this._offsetTimer) clearTimeout(this._offsetTimer)
   }
 })

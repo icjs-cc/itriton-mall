@@ -1,49 +1,41 @@
-import {
-  getStorage
-} from "./storage"
-import {
-  isEmpty
-} from "./util"
+import { getStorage } from "./storage"
+import { clone, isEmpty } from "./util"
 import { routeToLogin, router } from "./router"
 
 /**
  * 是否登录
  */
 export const isLogin = () => {
-  const userInfo = getStorage('userInfo')
-  if (isEmpty(userInfo)) {
-    return false
-  }
-  return true
+  return !isEmpty(getStorage('userInfo'))
 }
 
 /**
- * 未登录拦截到登录页
+ * 未登录拦截到登录页，返回是否已拦截
  */
 export const noLoginIntercept = () => {
-  const userInfo = getStorage('userInfo')
-  if (isEmpty(userInfo)) {
-    routeToLogin()
-  }
+  if (isLogin()) return false
+  routeToLogin()
+  return true
+}
+
+const needAuth = (isauth) => {
+  return isauth === true || isauth === 'true' || isauth === 1 || isauth === '1'
 }
 
 /**
  * 跳转到下一页
- * @param {*} e 
+ * @param {*} e
  */
 export const routeToNext = (e) => {
-  const isauth = e.currentTarget.dataset.isauth
-  const url = e.currentTarget.dataset.url
-  const type = e.currentTarget.dataset.type
-  if(url){
-    if(isauth){
-      console.info("处理需要权限的路由")
-    }else{
-      router(url, type)
-    }
-  }else{
-    console.warn("ERROR:[routeToNext] url is empty")
+  const dataset = (e && e.currentTarget && e.currentTarget.dataset) || {}
+  const url = dataset.url
+  const type = dataset.type
+  if (!url) return
+  if (needAuth(dataset.isauth) && !isLogin()) {
+    routeToLogin()
+    return
   }
+  router(url, type)
 }
 
 /**
@@ -54,10 +46,12 @@ export const bindInputFormData = (e) => {
   const value = e.detail.value
   const pages = getCurrentPages()
   const curPage = pages[pages.length - 1]
-  let formData = curPage.data.formData
-  formData[param] = value
+  if (!curPage || !param) return
   curPage.setData({
-    formData
+    formData: {
+      ...(curPage.data.formData || {}),
+      [param]: value
+    }
   })
 }
 
@@ -67,16 +61,24 @@ export const bindInputFormData = (e) => {
 export const cloneFormData = () => {
   const pages = getCurrentPages()
   const curPage = pages[pages.length - 1]
-  let formData = util.clone(util.clone(curPage.__data__.formData))
+  if (!curPage || !curPage.data || !curPage.data.formData) return
   curPage.setData({
-    defaultFormData: {
-      ...formData
-    }
+    defaultFormData: clone(curPage.data.formData)
   })
 }
 
-export const $page = (delta) => {
- const pages = getCurrentPages();
- const len = pages.length;
- return pages[len - 1 + delta]
+export const $page = (delta = 0) => {
+  const pages = getCurrentPages()
+  return pages[pages.length - 1 + delta]
+}
+
+/**
+ * 收起 page 组件的首屏 loading
+ */
+export const hidePageLoading = function () {
+  const ctx = this
+  wx.nextTick(() => {
+    const page = ctx.selectComponent && ctx.selectComponent('#page')
+    if (page && page.hideLoading) page.hideLoading()
+  })
 }

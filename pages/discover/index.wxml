@@ -3,7 +3,7 @@
   <t-nav-bar title="发现" visible="{{false}}" background="#FFF" btn-color="{{nav_bar_btn_color}}" text-color="#333" />
   <t-search-bar placeholder="搜索文章" is-border="{{false}}"></t-search-bar>
   <t-tabs current="{{ current }}" color="{{main_color}}" bindchange="handleChange">
-    <t-tab key="{{item.key}}" wx:for="{{tabList}}" title="{{item.name}}" wx:key="unique"></t-tab>
+    <t-tab key="{{item.key}}" wx:for="{{tabList}}" title="{{item.name}}" wx:key="key"></t-tab>
   </t-tabs>
   <view class="p-20">
     <paging page-count="{{1}}" emptyText="暂无找到相关文章" emptyImage="/images/common/empty_discover.png">

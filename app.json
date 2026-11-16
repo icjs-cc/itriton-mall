@@ -4,8 +4,7 @@
     "pages/classify/index",
     "pages/discover/index",
     "pages/shopping-cart/index",
-    "pages/mine/index",
-    "biz-component/coupon/index"
+    "pages/mine/index"
   ],
   "subpackages": [
     {
@@ -51,7 +50,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#DCAA6B",
-    "navigationBarTitleText": "智鲸云商城",
+    "navigationBarTitleText": "ITRITON MALL",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#f5f5f5"
   },
@@ -91,6 +90,21 @@
         "text": "我的"
       }
     ]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": ["pagesGoods"]
+    },
+    "pages/shopping-cart/index": {
+      "network": "all",
+      "packages": ["pagesOrder"]
+    },
+    "pages/mine/index": {
+      "network": "all",
+      "packages": ["pagesMine", "pagesAuthority"]
+    }
   },
   "sitemapLocation": "sitemap.json"
 }

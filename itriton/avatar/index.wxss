@@ -47,7 +47,7 @@
 }
 
 .t-avatar-square {
-  border-radius: 10rrpx;
+  border-radius: var(--radius, 16rpx);
 }
 
 .t-avatar .t-avatar-image {

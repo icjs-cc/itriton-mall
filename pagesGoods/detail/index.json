@@ -5,7 +5,7 @@
     "t-swiper": "/itriton/swiper/index",
     "t-submit-bar": "/itriton/submit-bar/index",
     "rich-text": "/component/rich-text/index",
-    "biz-specs": "/biz-component/specs/index",
+    "biz-specs": "/pagesGoods/components/specs/index",
     "iconfont": "/component/iconfont/index"
   },
   "navigationStyle": "custom"

@@ -1,7 +1,21 @@
 {
   "description": "项目配置文件",
   "packOptions": {
-    "ignore": []
+    "ignore": [
+      {
+        "value": "screenshot",
+        "type": "folder"
+      },
+      {
+        "value": "README.md",
+        "type": "file"
+      },
+      {
+        "value": ".md",
+        "type": "suffix"
+      }
+    ],
+    "include": []
   },
   "setting": {
     "urlCheck": false,
@@ -39,15 +53,17 @@
     "disableUseStrict": false,
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
-    "minifyWXML": true
+    "minifyWXML": true,
+    "ignoreDevUnusedFiles": true,
+    "ignoreUploadUnusedFiles": true,
+    "compileWorklet": false,
+    "localPlugins": false,
+    "condition": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.17.0",
-  "appid": "touristappid",
-  "projectname": "ibaleine-weapp",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
+  "appid": "wxacb415af350e06b7",
+  "projectname": "itriton-mall",
   "isGameTourist": false,
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
@@ -79,5 +95,6 @@
         }
       ]
     }
-  }
+  },
+  "editorSetting": {}
 }

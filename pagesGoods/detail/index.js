@@ -5,7 +5,7 @@ import images from '../../utils/images.js'
 Page({
   ...app.globalData.function,
   data: {
-    ...app.globalData.config,
+    ...app.globalData.theme,
     images: images.goods1,
     swiperList: [
       {url: '/images/resource/1.png', name: '礼品系列'},

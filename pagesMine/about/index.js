@@ -3,8 +3,8 @@ const app = getApp()
 Page({
   ...app.globalData.function,
   data: {
-    ...app.globalData.config,
-    wechatCode: "wxid_3s6q6ffh7z8k21"
+    ...app.globalData.theme,
+    wechatCode: "icjs"
   },
   copyWechatCode(){
     this.$setClipboardData(this.data.wechatCode).then(()=>{

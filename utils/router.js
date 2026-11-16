@@ -1,8 +1,15 @@
+const ROUTER_TYPES = ['navigateTo', 'redirectTo', 'switchTab', 'reLaunch']
+
 /**
  * 跳转到登录页
  */
-export const routeToLogin = () => {
-	router('/pagesAuthority/login/index', 'navigateTo')
+export const routeToLogin = (type = 'navigateTo') => {
+	const pages = getCurrentPages()
+	const current = pages[pages.length - 1]
+	if (current && current.route === 'pagesAuthority/login/index') {
+		return
+	}
+	router('/pagesAuthority/login/index', type)
 }
 
 /**
@@ -16,9 +23,16 @@ export const routeToHome = () => {
  * 路由 navigateTo, redirectTo, switchTab, reLaunch
  */
 export const router = (url, type = 'navigateTo') => {
-	isRouterType(type)
-	wx[type].call(wx, {
-		url
+	if (!ROUTER_TYPES.includes(type)) {
+		console.warn('type 属性可选值为 navigateTo，redirectTo，switchTab，reLaunch', type)
+		return
+	}
+	if (!url) return
+	wx[type]({
+		url,
+		fail(error) {
+			console.warn('路由跳转失败', type, url, error)
+		}
 	})
 }
 
@@ -29,13 +43,4 @@ export const back = (delta) => {
 	wx.navigateBack({
 		delta: delta || 1
 	})
-}
-
-const isRouterType = (t) => {
-	if (!['navigateTo', 'redirectTo', 'switchTab', 'reLaunch'].includes(t)) {
-		console.warn('type 属性可选值为 navigateTo，redirectTo，switchTab，reLaunch', t)
-		return false
-	}
-
-	return true
 }
