@@ -1,9 +1,9 @@
 # ITRITON MALL
 
-[![star](https://gitee.com/ibaleine-open-source/ibaleine-weapp/badge/star.svg?theme=dark)](https://gitee.com/ibaleine-open-source/ibaleine-weapp/stargazers)
-[![fork](https://gitee.com/ibaleine-open-source/ibaleine-weapp/badge/fork.svg?theme=dark)](https://gitee.com/ibaleine-open-source/ibaleine-weapp/members)
-[![GitHub stars](https://img.shields.io/github/stars/icjs-cc/ibaleine-weapp?logo=GitHub&style=flat-square)](https://github.com/icjs-cc/ibaleine-weapp/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/icjs-cc/ibaleine-weapp?logo=GitHub&style=flat-square)](https://github.com/icjs-cc/ibaleine-weapp/network)
+[![star](https://gitee.com/itriton/itriton-mall/badge/star.svg?theme=dark)](https://gitee.com/itriton/itriton-mall/stargazers)
+[![fork](https://gitee.com/itriton/itriton-mall/badge/fork.svg?theme=dark)](https://gitee.com/itriton/itriton-mall/members)
+[![GitHub stars](https://img.shields.io/github/stars/icjs-cc/itriton-mall?logo=GitHub&style=flat-square)](https://github.com/icjs-cc/itriton-mall/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/icjs-cc/itriton-mall?logo=GitHub&style=flat-square)](https://github.com/icjs-cc/itriton-mall/network)
 
 原生微信小程序商城。首页、分类、发现、购物车、我的都在主包，商品、订单、账号和个人中心按分包加载。默认使用本地数据，打开就能走通浏览、加购、下单和订单处理。
 
