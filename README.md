@@ -52,11 +52,20 @@ screenshot            项目截图，不打进小程序包
 
 ## 项目截图
 
-![首页](./screenshot/home.jpeg)
-![分类](./screenshot/classify.jpeg)
-![发现](./screenshot/discover.jpeg)
-![购物车](./screenshot/shopping-cart.jpeg)
-![我的](./screenshot/mine.jpeg)
+<table>
+  <tr>
+    <td width="50%" align="center"><b>首页</b><br><br><img src="./screenshot/home.jpeg" alt="首页" width="360"></td>
+    <td width="50%" align="center"><b>分类</b><br><br><img src="./screenshot/classify.jpeg" alt="分类" width="360"></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><b>发现</b><br><br><img src="./screenshot/discover.jpeg" alt="发现" width="360"></td>
+    <td width="50%" align="center"><b>购物车</b><br><br><img src="./screenshot/shopping-cart.jpeg" alt="购物车" width="360"></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><b>我的</b><br><br><img src="./screenshot/mine.jpeg" alt="我的" width="360"></td>
+    <td width="50%" align="center"><b>登录</b><br><br><img src="./screenshot/login.jpeg" alt="登录" width="360"></td>
+  </tr>
+</table>
 
 ## 开发者
 
