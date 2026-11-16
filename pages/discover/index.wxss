@@ -8,14 +8,15 @@
 .discover-content {
   display: flex;
   justify-content: space-between;
-  margin-top: 16rpx;
+  margin-top: var(--space-tight);
 }
 
 .discover-desc {
   width: 434rpx;
   height: 170rpx;
-  font-size: 24rpx;
-  color: #888888;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
   overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box !important;

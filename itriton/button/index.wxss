@@ -6,7 +6,8 @@
   background-image: none;
   white-space: nowrap;
   user-select: none;
-  font-size: 28rpx;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
   border-radius: var(--radius, 16rpx);
   position: relative;
   text-decoration: none;
@@ -62,16 +63,10 @@
   background: #2db7f5 !important;
 }
 
-.t-btn-circle {
-  border-radius: 90rpx;
-}
-
-.t-btn-large.t-btn-circle {
-  border-radius: 90rpx;
-}
-
+.t-btn-circle,
+.t-btn-large.t-btn-circle,
 .t-btn-small.t-btn-circle {
-  border-radius: 80rpx;
+  border-radius: 999rpx;
 }
 
 .t-btn-loading {

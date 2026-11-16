@@ -1,0 +1,13 @@
+.article-image {
+  width: 100%;
+  height: 360rpx;
+  margin-top: var(--space-section);
+  border-radius: var(--radius, 16rpx);
+}
+
+.article-content {
+  margin-top: var(--space-section);
+  font-size: var(--font-size-md);
+  line-height: 1.7;
+  color: var(--color-text);
+}

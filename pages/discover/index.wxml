@@ -1,14 +1,14 @@
 <!--pages/discover/index.wxml-->
 <page id="page">
   <t-nav-bar title="发现" visible="{{false}}" background="#FFF" btn-color="{{nav_bar_btn_color}}" text-color="#333" />
-  <t-search-bar placeholder="搜索文章" is-border="{{false}}"></t-search-bar>
+  <t-search-bar placeholder="搜索文章" is-border="{{false}}" bind:search="onSearch"></t-search-bar>
   <t-tabs current="{{ current }}" color="{{main_color}}" bindchange="handleChange">
     <t-tab key="{{item.key}}" wx:for="{{tabList}}" title="{{item.name}}" wx:key="key"></t-tab>
   </t-tabs>
   <view class="p-20">
-    <paging page-count="{{1}}" emptyText="暂无找到相关文章" emptyImage="/images/common/empty_discover.png">
-      <view>
-        <t-cell t-class='border-radius-t pt-20 pb-20'>
+    <paging page-count="{{articleList.length}}" emptyText="暂无找到相关文章" emptyImage="/images/common/empty_discover.png">
+      <view class="mb-20" wx:for="{{articleList}}" wx:key="id" data-id="{{item.id}}" bindtap="openArticle">
+        <t-cell t-class='border-radius-t pt-20 pb-20' data-id="{{item.id}}" bind:click="openArticle">
           <t-image class="discover-avatar" t-class="discover-avatar" slot="icon" src="/images/common/logo.png"></t-image>
           <view class="flex align-center justify-between" slot='content'>
             <view class='flex align-center'>
@@ -16,14 +16,14 @@
                 {{project_cn}}
               </view>
             </view>
-            <view class="text-sm text-gray">68 浏览</view>
+            <view class="text-sm text-gray">{{item.views}} 浏览</view>
           </view>
         </t-cell>
-        <view class="bg-white pl-20 pr-20 pt-10 pb-20 border-radius-b">
-          <view class="text-df text-black">品茶，品的是茶味还是人生</view>
+        <view class="bg-white pl-20 pr-20 pt-20 pb-20 border-radius-b">
+          <view class="text-df text-black">{{item.title}}</view>
           <view class="discover-content">
-            <view class="discover-desc">茶，只是一杯茶，晨起日落，生命有它陪伴不曾离开，不可或缺。</view>
-            <t-image class="discover-image" src="{{images.goods1}}"></t-image>
+            <view class="discover-desc">{{item.desc}}</view>
+            <t-image class="discover-image" src="{{item.image}}"></t-image>
           </view>
         </view>
       </view>

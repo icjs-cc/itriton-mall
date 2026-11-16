@@ -5,7 +5,7 @@ page{
 }
 
 .upgrade-wrap {
-  padding: 0 50rpx 150rpx 50rpx;
+  padding: 0 var(--space-page) 150rpx;
 }
 
 .timeline {
@@ -42,7 +42,7 @@ page{
 }
 
 .upgrade-card {
-  margin-top: 40rpx;
+  margin-top: var(--space-section);
 }
 
 .upgrade-header {
@@ -64,8 +64,8 @@ page{
   display: inline-block;
   padding: 0 20rpx;
   border-radius: 999rpx;
-  font-size: 32rpx;
-  font-family: "Helvetica Neue";
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
   line-height: 40rpx;
   color: #fff;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db9e8', endColorstr='#2989d8', GradientType=1);

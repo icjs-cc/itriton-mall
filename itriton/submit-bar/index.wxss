@@ -36,9 +36,8 @@
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
-  font-weight: 500;
-  text-align: right;
-  color: #323233;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
   padding-right: 25rpx;
 }
 

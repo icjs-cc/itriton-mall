@@ -1,4 +1,4 @@
-import images from '../../utils/images.js'
+import { categoryChildren } from '../../utils/catalog.js'
 const app = getApp()
 Page({
   ...app.globalData.function,
@@ -14,16 +14,7 @@ Page({
     ],
     current: '1',
     offset: '0rpx',
-    list: [
-      { id: 1, name: '茶盘', url: images.classify1 },
-      { id: 2, name: '茶荷', url: images.classify2 },
-      { id: 3, name: '烧水壶', url: images.classify3 },
-      { id: 4, name: '茶巾', url: images.classify4 },
-      { id: 5, name: '茶盘', url: images.classify1 },
-      { id: 6, name: '茶荷', url: images.classify2 },
-      { id: 7, name: '烧水壶', url: images.classify3 },
-      { id: 8, name: '茶巾', url: images.classify4 },
-    ]
+    list: categoryChildren['1']
   },
   getOffset() {
     if (this._offsetTimer) clearTimeout(this._offsetTimer)
@@ -46,15 +37,35 @@ Page({
       .exec()
   },
   handleChange({ detail }) {
+    const current = detail.key
     this.setData({
-      current: detail.key
+      current,
+      list: categoryChildren[current] || []
     })
+  },
+  openSearch() {
+    const tab = this.data.tabList.find((item) => item.key === this.data.current)
+    const title = tab ? tab.name : '商品'
+    this.router(`/pagesGoods/list/index?category=${this.data.current}&title=${encodeURIComponent(title)}`)
+  },
+  openGoods(e) {
+    const name = e.currentTarget.dataset.name
+    const tab = this.data.tabList.find((item) => item.key === this.data.current)
+    this.router(`/pagesGoods/list/index?category=${this.data.current}&keyword=${encodeURIComponent(name)}&title=${encodeURIComponent(tab ? tab.name : '商品')}`)
   },
   onReady() {
     this.hidePageLoading()
     this.getOffset()
   },
   onShow() {
+    const key = this.getStorage('classifyKey')
+    if (key) {
+      this.removeStorage('classifyKey')
+      this.setData({
+        current: String(key),
+        list: categoryChildren[String(key)] || []
+      })
+    }
     this.getOffset()
   },
   onUnload() {

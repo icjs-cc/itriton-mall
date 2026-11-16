@@ -36,15 +36,16 @@
 }
 
 .mine__info--name {
-  font-size: 36rpx;
-  font-weight: 600;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
   line-height: 1.3;
   color: #fff;
 }
 
 .mine__info--desc {
   margin-top: 8rpx;
-  font-size: 24rpx;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.88);
 }
@@ -53,7 +54,7 @@
   position: relative;
   z-index: 2;
   margin-top: -48rpx;
-  padding: 0 24rpx;
+  padding: 0 var(--space-page);
 }
 
 .mine-card {
@@ -64,34 +65,35 @@
 }
 
 .mine-card + .mine-card {
-  margin-top: 20rpx;
+  margin-top: var(--space-section);
 }
 
 .mine-order-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28rpx 28rpx 8rpx;
+  padding: var(--space-card) var(--space-card) var(--space-tight);
 }
 
 .mine-order-title {
-  font-size: 32rpx;
-  font-weight: 600;
-  color: #333;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
 }
 
 .mine-order-more {
   padding: 6rpx 18rpx;
   border-radius: 999rpx;
   background: #f6f6f6;
-  font-size: 24rpx;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
   line-height: 1.4;
-  color: #888;
+  color: var(--color-text-secondary);
 }
 
 .mine-order-grid {
   display: flex;
-  padding: 20rpx 8rpx 28rpx;
+  padding: var(--space-page) 8rpx var(--space-card);
 }
 
 .mine-order-item {
@@ -102,20 +104,21 @@
 }
 
 .mine-order-num {
-  font-size: 36rpx;
-  font-weight: 600;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
   line-height: 1.2;
-  color: #333;
+  color: var(--color-text);
 }
 
 .mine-order-label {
   margin-top: 10rpx;
-  font-size: 24rpx;
-  color: #888;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
 }
 
 .mine-cell {
-  padding: 26rpx 24rpx !important;
+  padding: var(--space-card) !important;
   margin: 0;
   background: #fff;
   border-radius: 0 !important;

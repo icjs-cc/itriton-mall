@@ -1,0 +1,8 @@
+<t-nav-bar title="文章详情" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<view wx:if="{{article}}" class="bg-white p-20">
+  <view class="text-xl text-black">{{article.title}}</view>
+  <view class="text-sm text-gray mt-20">{{article.views}} 浏览</view>
+  <t-image t-class="article-image" src="{{article.image}}"></t-image>
+  <view class="article-content">{{article.desc}}</view>
+  <view class="article-content">{{article.content}}</view>
+</view>

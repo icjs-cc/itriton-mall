@@ -1,0 +1,28 @@
+<t-nav-bar title="{{title}}" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<paging page-count="{{list.length}}" emptyText="暂无相关订单" emptyImage="/images/common/empty_order.png">
+  <view class="p-20">
+    <view class="order-card bg-white border-radius mb-20" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindtap="openDetail">
+      <view class="order-head">
+        <text>{{item.time}}</text>
+        <text style="color:{{main_color}}">{{item.statusText}}</text>
+      </view>
+      <view class="order-goods" wx:for="{{item.goods}}" wx:for-item="goods" wx:key="id">
+        <image class="order-pic" src="{{goods.url}}" mode="aspectFill"></image>
+        <view class="order-info">
+          <view class="ellipsis-l2">{{goods.name}}</view>
+          <view class="text-sm text-gray">{{goods.spec}} × {{goods.num}}</view>
+          <view class="text-red">¥{{goods.price}}</view>
+        </view>
+      </view>
+      <view class="order-foot">
+        <text>合计 ¥{{item.total}}</text>
+        <view class="order-actions">
+          <view wx:if="{{item.status === 'unpaid' || item.status === 'unshipped'}}" class="order-btn" data-id="{{item.id}}" catchtap="cancelOrder">取消订单</view>
+          <view wx:if="{{item.status === 'unpaid'}}" class="order-btn order-btn-primary" style="background:{{main_color}};border-color:{{main_color}}" data-id="{{item.id}}" catchtap="pay">去支付</view>
+          <view wx:if="{{item.status === 'unreceived' || item.status === 'done'}}" class="order-btn" data-id="{{item.id}}" catchtap="applyReturn">申请退货</view>
+          <view wx:if="{{item.status === 'unreceived'}}" class="order-btn order-btn-primary" style="background:{{main_color}};border-color:{{main_color}}" data-id="{{item.id}}" catchtap="receive">确认收货</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</paging>

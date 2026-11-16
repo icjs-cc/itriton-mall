@@ -39,7 +39,7 @@
 }
 
 .button-submit {
-  margin: 20rpx 20rpx !important;
+  margin: var(--space-page) !important;
   height: 75rpx !important;
   line-height: 75rpx !important;
 }

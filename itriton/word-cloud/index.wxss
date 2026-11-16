@@ -20,8 +20,7 @@
 .word-cloud__cell--tag {
   padding: 5rpx 15rpx;
   border-radius: var(--radius, 16rpx);
-  font-size: 32rpx;
-  font-family: "微软雅黑";
-  font-weight: bold;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
   color: #fff;
 }

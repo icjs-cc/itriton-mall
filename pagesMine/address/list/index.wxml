@@ -2,8 +2,8 @@
 <t-nav-bar title="我的地址" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
 <paging page-count="{{1}}" emptyText="暂无收货地址" emptyImage="/images/common/empty_address.png">
 	<view class='p-20'>
-		<view class="mb-10" data-item="{{item}}" bindlongpress="handleOperate">
-			<t-cell t-class='border-radius border-b pt-30 pb-30'>
+		<view class="mb-20" data-item="{{item}}" bindlongpress="handleOperate">
+			<t-cell t-class='border-radius border-b pt-20 pb-20'>
 				<view class="flex flex-direction" slot='content'>
 					<view class='flex align-center cell text-lg'>
 						<view class="title text-lg ellipsis">林果 18750255938</view>

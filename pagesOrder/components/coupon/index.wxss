@@ -8,7 +8,7 @@
   width: 248rpx;
   border-right: 1px dotted #D6D6D6;
   font-size: 60rpx;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 .coupon-right{
   height: 200rpx;

@@ -1,4 +1,5 @@
 // pages/mine/setting/index.js
+import { getShareImage } from '../../utils/share.js'
 const app = getApp()
 Page({
   ...app.globalData.function,
@@ -22,7 +23,7 @@ Page({
     if (res.from === 'button') {
       return {
         title: `您的好友邀您使用【${this.data.project_cn}】哦~`,
-        imageUrl: '/images/common/share.jpg',
+        imageUrl: getShareImage(),
         path: "/pages/index/index",
         success: (res) => { }
       }

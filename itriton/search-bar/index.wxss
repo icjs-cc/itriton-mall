@@ -95,3 +95,7 @@
   margin: 0 10rpx;
   width: 100%;
 }
+
+.search-bar-placeholder {
+  color: #bbbbbb;
+}

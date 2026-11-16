@@ -5,29 +5,29 @@
       <t-image t-class="specs-image" shape src="{{images}}"></t-image>
       <view class="flex flex-direction justify-between pl-20">
         <view class="flex">
-          <view class="specs-goods-name">家用简约长方竹制茶盘方形干泡盘小号单人竹制整板托盘</view>
+          <view class="specs-goods-name">{{goods.name}}</view>
           <view class="flex">
             <iconfont icon="icon-del" color="#999999" size="40rpx" bindtap="hideSpecs" />
           </view>
         </view>
         <view class="flex justify-between">
-          <view class="specs-price">￥45.00</view>
-          <view class="specs-num">库存：0</view>
+          <view class="specs-price">￥{{goods.price}}</view>
+          <view class="specs-num">库存：{{goods.stock}}</view>
         </view>
       </view>
     </view>
     <view class="mt-20" wx:for="{{skuList}}" wx:key="unique">
       <view class="specs-title">{{item.name}}</view>
       <view class="specs-cell">
-        <view class="specs-name" wx:for="{{item.children}}" wx:for-item="children" wx:key="unique">{{children.name}}</view>
+        <view class="specs-name {{selected[item.id] === children.name ? 'specs-name-active' : ''}}" style="{{selected[item.id] === children.name ? 'color:' + mainColor + ';border-color:' + mainColor : ''}}" wx:for="{{item.children}}" wx:for-item="children" wx:key="name" data-group="{{item.id}}" data-name="{{children.name}}" bindtap="selectSku">{{children.name}}</view>
       </view>
     </view>
   </view>
   <view>
     <t-submit-bar t-class='button-submit' text='立即购买' bgcolor='{{main_color}}' z-index='9999' border self safeArea>
       <view class="flex justify-between align-center pt-20 pl-20 pr-20">
-        <view class="submit-btn-left" style="background: {{subColor}};">加入购物车</view>
-        <view class="submit-btn-right" style="background: {{mainColor}};">立即购买</view>
+        <view class="submit-btn-left" style="background: {{subColor}};" data-action="cart" bindtap="confirm">加入购物车</view>
+        <view class="submit-btn-right" style="background: {{mainColor}};" data-action="buy" bindtap="confirm">立即购买</view>
       </view>
     </t-submit-bar>
   </view>

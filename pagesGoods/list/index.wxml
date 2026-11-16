@@ -1,0 +1,9 @@
+<t-nav-bar title="{{title}}" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<t-search-bar placeholder="搜索商品" value="{{keyword}}" bind:search="onSearch" />
+<paging page-count="{{list.length}}" emptyText="没有找到相关商品" emptyImage="/images/common/empty_shopping_cart.png">
+  <view class="p-20">
+    <view class="flex justify-between flex-wrap">
+      <goods wx:for="{{list}}" wx:key="id" url="{{item.url}}" name="{{item.name}}" price="¥{{item.price}}" data-url="/pagesGoods/detail/index?id={{item.id}}" bindtap="routeToNext"></goods>
+    </view>
+  </view>
+</paging>

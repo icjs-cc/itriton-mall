@@ -18,7 +18,8 @@
     {
       "root": "pagesGoods",
       "pages": [
-        "detail/index"
+        "detail/index",
+        "list/index"
       ]
     },
     {
@@ -37,7 +38,15 @@
       "root": "pagesOrder",
       "pages": [
         "confirm/index",
-        "discount-coupon/index"
+        "discount-coupon/index",
+        "list/index",
+        "detail/index"
+      ]
+    },
+    {
+      "root": "pagesDiscover",
+      "pages": [
+        "detail/index"
       ]
     }
   ],
@@ -97,13 +106,21 @@
       "network": "all",
       "packages": ["pagesGoods"]
     },
+    "pages/classify/index": {
+      "network": "all",
+      "packages": ["pagesGoods"]
+    },
+    "pages/discover/index": {
+      "network": "all",
+      "packages": ["pagesDiscover"]
+    },
     "pages/shopping-cart/index": {
       "network": "all",
       "packages": ["pagesOrder"]
     },
     "pages/mine/index": {
       "network": "all",
-      "packages": ["pagesMine", "pagesAuthority"]
+      "packages": ["pagesMine", "pagesAuthority", "pagesOrder"]
     }
   },
   "sitemapLocation": "sitemap.json"

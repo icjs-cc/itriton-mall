@@ -3,7 +3,7 @@
 <t-search-bar bind:search="search"/>
 <base-page page-count="{{noticeList.length}}">
 	<view class='p-20'>
-		<view class="border-b mb-10 box-shadow-radius"
+		<view class="border-b mb-20 box-shadow-radius"
 			wx:for="{{noticeList}}" wx:key="unique" data-item="{{item}}" bindtap="detail">
 			<t-cell t-class='border-radius-t border-b pt-10 pb-10'>
 				<view class="flex align-center" slot='content'>

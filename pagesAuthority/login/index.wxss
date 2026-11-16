@@ -4,18 +4,18 @@ page{
 }
 
 .login-wrap {
-  padding: 40rpx;
+  padding: var(--space-page);
 }
 
 .login__title {
-  font-size: 48rpx;
-  font-weight: 600;
-  color: rgba(51, 51, 51, 1);
-  opacity: 1;
-  margin-top: 40rpx;
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  line-height: 1.3;
+  margin-top: var(--space-section);
 }
 
 .login__content{
-  margin-top: 100rpx;
-  margin-bottom: 100rpx;
+  margin-top: var(--space-loose);
+  margin-bottom: var(--space-loose);
 }

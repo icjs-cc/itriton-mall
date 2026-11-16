@@ -14,6 +14,17 @@ Component({
     isBorder: {
       type: Boolean,
       value: true
+    },
+    entry: {
+      type: Boolean,
+      value: false
+    },
+    value: {
+      type: String,
+      value: '',
+      observer(value) {
+        this.setData({ inputVal: value || '' })
+      }
     }
   },
 
@@ -43,6 +54,9 @@ Component({
       this.setData({
         inputVal: ''
       })
+    },
+    handleEntry() {
+      this.triggerEvent('entry')
     }
   }
 })

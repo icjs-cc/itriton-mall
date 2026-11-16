@@ -1,0 +1,30 @@
+<t-nav-bar title="订单详情" background="{{main_color}}" btn-color="{{nav_bar_btn_color}}" text-color="{{nav_bar_text_color}}" bind:home="routeToHome" />
+<paging page-count="{{order ? 1 : 0}}" emptyText="订单不存在" emptyImage="/images/common/empty_order.png">
+  <view class="p-20" wx:if="{{order}}">
+    <view class="bg-white border-radius p-20">
+      <view class="text-lg" style="color:{{main_color}}">{{order.statusText}}</view>
+      <view class="text-sm text-gray mt-20">{{order.delivery}} · {{order.time}}</view>
+      <view class="mt-20" wx:if="{{order.address.name}}">{{order.address.name}} {{order.address.phone}}</view>
+      <view class="text-sm text-gray" wx:if="{{order.address.address}}">{{order.address.address}}</view>
+    </view>
+    <view class="bg-white border-radius mt-20">
+      <view class="order-goods" wx:for="{{order.goods}}" wx:key="id" data-id="{{item.goodsId}}" bindtap="openGoods">
+        <image class="order-pic" src="{{item.url}}" mode="aspectFill"></image>
+        <view class="order-info">
+          <view class="ellipsis-l2">{{item.name}}</view>
+          <view class="text-sm text-gray">{{item.spec}} × {{item.num}}</view>
+          <view class="text-red">¥{{item.price}}</view>
+        </view>
+      </view>
+      <view class="order-total">合计 ¥{{order.total}}</view>
+    </view>
+  </view>
+  <t-submit-bar wx:if="{{order.status === 'unpaid' || order.status === 'unshipped' || order.status === 'unreceived' || order.status === 'done'}}" self safeArea border z-index="9999">
+    <view class="order-bar">
+      <view wx:if="{{order.status === 'unpaid' || order.status === 'unshipped'}}" class="order-btn" bindtap="cancelOrder">取消订单</view>
+      <view wx:if="{{order.status === 'unreceived' || order.status === 'done'}}" class="order-btn" bindtap="applyReturn">申请退货</view>
+      <view wx:if="{{order.status === 'unpaid'}}" class="order-btn order-btn-primary" style="background:{{main_color}};border-color:{{main_color}}" bindtap="pay">去支付</view>
+      <view wx:if="{{order.status === 'unreceived'}}" class="order-btn order-btn-primary" style="background:{{main_color}};border-color:{{main_color}}" bindtap="receive">确认收货</view>
+    </view>
+  </t-submit-bar>
+</paging>

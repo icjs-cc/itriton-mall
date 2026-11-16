@@ -11,7 +11,7 @@
 		wx:for="{{loginAccount}}" wx:key="unique" data-item="{{item}}"
 		bindlongpress="handleDelete"  data-index="{{index}}"
 		bindtap="{{userInfo.userId==item.userId?'':'switchAccount'}}">
-    <image class="switch-account__icon" style="background: {{main_color}};" slot="icon" src="/images/mine/avatar.png"></image>
+    <image class="switch-account__icon" style="background: {{main_color}};" slot="icon" src="/images/mine/avatar-v2.png"></image>
 		<view slot="content">
 			<view class="text-lg">
 				<text>{{item.nickname}}</text>

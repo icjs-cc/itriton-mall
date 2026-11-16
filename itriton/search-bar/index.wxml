@@ -4,8 +4,9 @@
     <view class="search-bar-form">
       <view class="search-bar-box">
         <icon class="icon-search_in-box" type="search" size="{{size}}"></icon>
-        <input type="text" class="search-bar-input" placeholder="{{placeholder}}" value="{{inputVal}}" bindinput="handleInput" />
-        <icon class="icon-search-clear" type="clear" size="{{size}}" wx:if='{{inputVal}}' bindtap="handleClear"></icon>
+        <view wx:if="{{entry}}" class="search-bar-input search-bar-placeholder" bindtap="handleEntry">{{placeholder}}</view>
+        <input wx:else type="text" class="search-bar-input" placeholder="{{placeholder}}" value="{{inputVal}}" bindinput="handleInput" />
+        <icon class="icon-search-clear" type="clear" size="{{size}}" wx:if='{{inputVal && !entry}}' bindtap="handleClear"></icon>
       </view>
     </view>
   </view>

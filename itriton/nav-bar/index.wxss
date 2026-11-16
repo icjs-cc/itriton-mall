@@ -33,7 +33,8 @@
 }
 
 .nav-bar-title {
-  font-weight: 600;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
   text-align: center;
   vertical-align: center;
   width: 100%;

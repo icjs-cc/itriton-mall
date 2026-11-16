@@ -1,4 +1,4 @@
-import images from '../../utils/images.js'
+import { getCart, saveCart, getOrders, saveOrders, goodsList } from '../../utils/catalog.js'
 const app = getApp()
 Page({
   ...app.globalData.function,
@@ -9,8 +9,8 @@ Page({
       {name: '配送', key: 2},
     ],
     shoppingCartList: [
-      {id: 1, name: '贴布日式圆盘特殊日本木质茶盘', spec: '默认', url: images.goods1, price: 198, num: 1},
-      {id: 2, name: '商务办公用茶-水仙', spec: '一斤装', url: images.goods2, price: 122, num: 2},
+      { id: '1-默认', goodsId: 1, name: goodsList[0].name, spec: '默认', url: goodsList[0].url, price: Number(goodsList[0].price), num: 1 },
+      { id: '2-一斤装', goodsId: 2, name: goodsList[1].name, spec: '一斤装', url: goodsList[1].url, price: Number(goodsList[1].price), num: 1 },
     ],
     info:{
       1:{
@@ -93,9 +93,25 @@ Page({
       return
     }
     this.$showModal({ content: '确定支付' }).then((res) => {
-      if (res.confirm) {
-        this.$showToast('支付功能开发中')
+      if (!res.confirm) return
+      const goods = this.data.shoppingCartList
+      const address = this.data.info[this.data.current] || {}
+      const order = {
+        id: String(Date.now()),
+        status: 'unshipped',
+        statusText: '待发货',
+        time: this.formatDate(new Date(), 'yyyy-MM-dd hh:mm'),
+        delivery: this.data.current === 1 ? '自提' : '配送',
+        total: this.data.confirmPrice,
+        address,
+        goods,
       }
+      saveOrders([order, ...getOrders()])
+      const bought = new Set(goods.map((item) => item.id))
+      saveCart(getCart().filter((item) => !bought.has(item.id)))
+      this.removeStorage('checkoutGoods')
+      this.$showToast('支付成功')
+      this.router(`/pagesOrder/detail/index?id=${order.id}`, 'redirectTo')
     })
   }
 })

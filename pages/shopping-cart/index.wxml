@@ -8,11 +8,13 @@
           <view class="pl-5 pr-5">
             <radio color="{{main_color}}" checked="{{item.checked}}" data-index="{{index}}" catchtap="radioChange"></radio>
           </view>
-          <t-image class="shopping-cart-image" src="{{item.url}}"></t-image>
+          <view data-id="{{item.goodsId}}" catchtap="openDetail">
+            <t-image class="shopping-cart-image" src="{{item.url}}"></t-image>
+          </view>
         </view>
         <view class="shopping-cart-content flex flex-direction justify-between ml-10" slot='content'>
           <view>
-            <view class='flex align-center cell text-lg ellipsis-l2'>{{item.name}}</view>
+          <view class='flex align-center cell text-lg ellipsis-l2' data-id="{{item.goodsId}}" catchtap="openDetail">{{item.name}}</view>
             <view class='flex align-center cell text-sm'>{{item.spec}}</view>
           </view>
           <view class='shopping-cart-price flex justify-between text-lg'>

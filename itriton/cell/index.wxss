@@ -1,13 +1,14 @@
 /* component/list-group-item/index.wxss */
 .t-cell {
   position: relative;
-  padding: 20rpx 0;
+  padding: var(--space-page) 0;
   display: flex;
   background: #fff;
   color: var(--color-text, #333);
   align-items: center;
   line-height: 1.4;
-  font-size: 28rpx;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
   overflow: hidden;
   text-align: left;
   margin: 0;
@@ -64,14 +65,16 @@
 
 .t-cell-text {
   line-height: 48rpx;
-  font-size: 28rpx;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
   color: var(--color-text, #333);
   min-width: 150rpx;
 }
 
 .t-cell-desc {
   line-height: 1.2;
-  font-size: 24rpx;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
   color: var(--color-text-secondary, #888);
 }
 

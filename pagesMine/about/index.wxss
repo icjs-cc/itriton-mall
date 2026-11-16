@@ -1,7 +1,7 @@
 /* pages/mine/about/index.wxss */
 .about{
   background: white;
-  padding: 40rpx 24rpx 48rpx;
+  padding: var(--space-card);
 }
 
 .about-header{
@@ -17,31 +17,22 @@
   background: transparent;
 }
 
-.about-header__text{
-  font-size: 28rpx;
-  padding: 24rpx 0 0;
-  color: var(--color-text, #333);
-}
-
-.about-header__desc{
-  font-size: 24rpx;
-  padding: 8rpx 0 12rpx;
-  color: var(--color-text-secondary, #888);
-}
-
 .about-content{
-  color: #666666;
-  font-size: 28rpx;
-  line-height: 50rpx;
-  padding: 0 20rpx;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.7;
+  padding: var(--space-section) 0 0;
 }
 
 .about-button{
-  margin-top: 40rpx;
-  font-size: 28rpx;
+  margin-top: var(--space-section);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
   line-height: 80rpx;
   height: 80rpx;
   color: #FFFFFF;
+  border-radius: 999rpx;
 }
 
 .about-button:active{

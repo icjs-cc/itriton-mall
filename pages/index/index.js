@@ -1,4 +1,4 @@
-import images from '../../utils/images.js'
+import { goodsList } from '../../utils/catalog.js'
 const app = getApp()
 Page({
   ...app.globalData.function,
@@ -17,18 +17,19 @@ Page({
       { id: 7, url: '/images/resource/icon_classify_7.png', name: '预定款' },
       { id: 8, url: '/images/resource/icon_classify_8.png', name: '更多商品' }
     ],
-    goodsList: [
-      { id: 1, url: images.goods1, name: '贴布日式圆盘特殊日本木质茶盘', price: '128.00' },
-      { id: 2, url: images.goods2, name: '商务办公用茶-水仙', price: '198.00' },
-      { id: 3, url: images.goods3, name: '商务办公用茶-肉桂', price: '200.00' },
-      { id: 4, url: images.goods4, name: '家用简约长方竹制茶盘方形干泡盘小号单人竹制整板', price: '218.00' },
-    ]
+    goodsList: goodsList.slice(0, 4)
   },
   handleSwiperClick() {
-    this.router('/pagesGoods/detail/index')
+    this.router(`/pagesGoods/detail/index?id=${goodsList[0].id}`)
   },
-  handleMenuClick() {
+  handleMenuClick(e) {
+    const item = e.detail || {}
+    const map = { 1: '1', 2: '4', 3: '2', 4: '3', 5: '4', 6: '5', 7: '6', 8: '1' }
+    this.setStorage('classifyKey', map[item.id] || '1')
     wx.switchTab({ url: '/pages/classify/index' })
+  },
+  openSearch() {
+    this.router(`/pagesGoods/list/index?title=${encodeURIComponent('搜索商品')}`)
   },
   onReady() {
     this.hidePageLoading()

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "t-image": "/itriton/image/index"
+  },
+  "navigationStyle": "custom"
+}

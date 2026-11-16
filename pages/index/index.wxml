@@ -1,14 +1,14 @@
 <!--pages/index/index.wxml-->
 <page id="page">
   <t-nav-bar title="首页" visible="{{false}}" background="#FFF" btn-color="{{nav_bar_btn_color}}" text-color="#333" />
-  <t-search-bar placeholder="搜索商城内所有商品" is-border="{{false}}" fixed></t-search-bar>
+  <t-search-bar placeholder="搜索商城内所有商品" is-border="{{false}}" fixed entry bind:entry="openSearch"></t-search-bar>
   <view class="bg-white pl-20 pr-20">
     <t-swiper list="{{swiperList}}" bind:click="handleSwiperClick" border-radius="16rpx" shape="square" height="230rpx" active-color="{{sub_color}}"></t-swiper>
     <t-menu list="{{menuList}}" bind:click="handleMenuClick"></t-menu>
   </view>
   <view class="p-20">
     <view class="flex justify-between flex-wrap">
-      <goods url="{{item.url}}" name="{{item.name}}" price="¥{{item.price}}" wx:for="{{goodsList}}" wx:key="id" data-url="/pagesGoods/detail/index" bindtap="routeToNext"></goods>
+      <goods url="{{item.url}}" name="{{item.name}}" price="¥{{item.price}}" wx:for="{{goodsList}}" wx:key="id" data-url="/pagesGoods/detail/index?id={{item.id}}" bindtap="routeToNext"></goods>
     </view>
   </view>
 </page>

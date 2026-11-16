@@ -4,10 +4,10 @@
   <t-swiper list="{{swiperList}}" height="700rpx" active-color="{{main_color}}" inactive-color="rgba(0,0,0,.2)"></t-swiper>
 </view>
 <view class="goods-info p-20">
-  <view class="goods-info-name">家用简约长方竹制茶盘方形干泡盘小号单人竹制整板托盘</view>
-  <view class="goods-info-desc">轻质储水茶盘方便随意搬动在家里院子随时随地想泡就泡</view>
+  <view class="goods-info-name">{{goods.name}}</view>
+  <view class="goods-info-desc">{{goods.desc}}</view>
   <view class="goods-info-footer">
-    <view class="goods-info-price">￥45.00</view>
+    <view class="goods-info-price">￥{{goods.price}}</view>
     <button class="custom-btn" open-type="share">
       <iconfont class="custom-btn-icon" icon="icon-share" color="{{main_color}}" size="50rpx" />
       <text class="custom-btn-text">分享</text>
@@ -15,7 +15,7 @@
   </view>
 </view>
 <view class="mt-20">
-  <t-cell title="选择规格" value="未选择" bindtap="showSpecs" isLink></t-cell>
+  <t-cell title="选择规格" value="{{specText}}" data-action="select" bind:click="openSpecs" isLink></t-cell>
 </view>
 <view class="mt-20 p-20 goods-desc">
   <view class="flex justify-center align-center">
@@ -30,7 +30,7 @@
 <t-submit-bar t-class='button-submit' text='立即购买' bgcolor='{{main_color}}' z-index='9999' border self safeArea>
   <view class="flex justify-between align-center">
     <view class="flex-sub flex justify-around pr-20">
-      <button class="custom-btn">
+      <button class="custom-btn" bindtap="openCart">
         <iconfont class="mt-5 custom-btn-icon" icon="icon-shopping-cart" color="#333333" size="50rpx" />
         <text class="custom-btn-text">购物车</text>
       </button>
@@ -40,10 +40,10 @@
       </button>
     </view>
     <view class="flex">
-      <view class="submit-btn-left" style="background: {{sub_color}};">加入购物车</view>
-      <view class="submit-btn-right" style="background: {{main_color}};">立即购买</view>
+      <view class="submit-btn-left" style="background: {{sub_color}};" data-action="cart" bindtap="openSpecs">加入购物车</view>
+      <view class="submit-btn-right" style="background: {{main_color}};" data-action="buy" bindtap="openSpecs">立即购买</view>
     </view>
   </view>
 </t-submit-bar>
 
-<biz-specs id="bizSpecs" main-color="{{main_color}}" sub-color="{{sub_color}}"></biz-specs>
+<biz-specs id="bizSpecs" main-color="{{main_color}}" sub-color="{{sub_color}}" bind:confirm="onSpecsConfirm"></biz-specs>

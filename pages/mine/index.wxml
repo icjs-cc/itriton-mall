@@ -4,7 +4,7 @@
 	<view class="mine-wrap">
 		<view class="mine__bg" style="background-color:{{main_color}};background-image: url('/images/mine/header.png');">
 			<view class="mine__info" bindtap="{{userInfo.userId?'':'routeToLogin'}}">
-				<image class="mine__bg--avatar" src="../../images/mine/avatar.png"></image>
+				<image class="mine__bg--avatar" src="/images/mine/avatar-v2.png"></image>
 				<view class="mine__info--cell">
 					<view class="mine__info--name">{{userInfo.userId?userInfo.nickname:'立即登录'}}</view>
 					<view class="mine__info--desc">{{userInfo.userId?today:'登录体验完整功能'}}</view>
@@ -15,34 +15,34 @@
 			<view class="mine-card">
 				<view class="mine-order-head">
 					<view class="mine-order-title">我的订单</view>
-					<view class="mine-order-more">查看全部</view>
+					<view class="mine-order-more" data-status="all" bindtap="openOrders">查看全部</view>
 				</view>
 				<view class="mine-order-grid">
-					<view class="mine-order-item">
-						<view class="mine-order-num">100</view>
+					<view class="mine-order-item" data-status="unpaid" bindtap="openOrders">
+						<view class="mine-order-num">{{orderCount.unpaid}}</view>
 						<view class="mine-order-label">待付款</view>
 					</view>
-					<view class="mine-order-item">
-						<view class="mine-order-num">0</view>
+					<view class="mine-order-item" data-status="unshipped" bindtap="openOrders">
+						<view class="mine-order-num">{{orderCount.unshipped}}</view>
 						<view class="mine-order-label">待发货</view>
 					</view>
-					<view class="mine-order-item">
-						<view class="mine-order-num">0</view>
+					<view class="mine-order-item" data-status="unreceived" bindtap="openOrders">
+						<view class="mine-order-num">{{orderCount.unreceived}}</view>
 						<view class="mine-order-label">待收货</view>
 					</view>
-					<view class="mine-order-item">
-						<view class="mine-order-num">0</view>
+					<view class="mine-order-item" data-status="done" bindtap="openOrders">
+						<view class="mine-order-num">{{orderCount.done}}</view>
 						<view class="mine-order-label">已完成</view>
 					</view>
 				</view>
 			</view>
 			<view class="mine-card">
-				<t-cell open-type="{{item.openType}}" title="{{item.name}}" data-isauth="{{item.isauth}}" data-url="{{item.url}}" bindtap="routeToNext" t-class="mine-cell {{index+1===moduleList.length?'t-cell-plain':''}}" border="{{index+1!==moduleList.length}}" isLink wx:for="{{moduleList}}" wx:key="icon">
+				<t-cell open-type="{{item.openType}}" title="{{item.name}}" data-isauth="{{item.isauth}}" data-url="{{item.url}}" bind:click="routeToNext" t-class="mine-cell {{index+1===moduleList.length?'t-cell-plain':''}}" border="{{index+1!==moduleList.length}}" isLink wx:for="{{moduleList}}" wx:key="icon">
 					<iconfont slot="icon" icon="{{item.icon}}" color="{{main_color}}" size="40rpx" />
 				</t-cell>
 			</view>
 			<view class="mine-card">
-				<t-cell open-type="{{item.openType}}" title="{{item.name}}" data-isauth="{{item.isauth}}" data-url="{{item.url}}" bindtap="routeToNext" t-class="mine-cell {{index+1===moduleExtraList.length?'t-cell-plain':''}}" border="{{index+1!==moduleExtraList.length}}" isLink wx:for="{{moduleExtraList}}" wx:key="icon">
+				<t-cell open-type="{{item.openType}}" title="{{item.name}}" data-isauth="{{item.isauth}}" data-url="{{item.url}}" bind:click="routeToNext" t-class="mine-cell {{index+1===moduleExtraList.length?'t-cell-plain':''}}" border="{{index+1!==moduleExtraList.length}}" isLink wx:for="{{moduleExtraList}}" wx:key="icon">
 					<iconfont slot="icon" icon="{{item.icon}}" color="{{main_color}}" size="40rpx" />
 				</t-cell>
 			</view>

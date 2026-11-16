@@ -1,8 +1,9 @@
 /* pages/classify/index.wxss */
 .classify-title{
-  font-size: 26rpx;
-  color: #333333;
-  font-weight: bolder;
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.4;
 }
 
 .classify-cell{
@@ -19,10 +20,11 @@
 }
 
 .classify-name{
-  font-size: 24rpx;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
   width: 150rpx;
   height: 64rpx;
-  color: var(--color-text-secondary, #888);
+  color: var(--color-text-secondary);
   text-align: center;
   overflow: hidden;
 	text-overflow: ellipsis;

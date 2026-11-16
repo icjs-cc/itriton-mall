@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "t-submit-bar": "/itriton/submit-bar/index"
+  },
+  "navigationStyle": "custom"
+}

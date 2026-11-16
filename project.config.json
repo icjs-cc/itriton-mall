@@ -15,7 +15,12 @@
         "type": "suffix"
       }
     ],
-    "include": []
+    "include": [
+      {
+        "value": "images/common/share-v2.jpg",
+        "type": "file"
+      }
+    ]
   },
   "setting": {
     "urlCheck": false,

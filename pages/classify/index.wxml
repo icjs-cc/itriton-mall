@@ -2,16 +2,16 @@
 <page id="page">
   <view class="header">
     <t-nav-bar title="分类" visible="{{false}}" background="#FFF" btn-color="{{nav_bar_btn_color}}" text-color="#333" />
-    <t-search-bar placeholder="搜索商城内所有商品" is-border="{{false}}"></t-search-bar>
+    <t-search-bar placeholder="搜索商城内所有商品" is-border="{{false}}" entry bind:entry="openSearch"></t-search-bar>
   </view>
   <t-tabs direction="vertical" offset="{{offset}}" current="{{current}}" color="{{main_color}}" bindchange="handleChange">
     <t-tab key="{{item.key}}" wx:for="{{tabList}}" title="{{item.name}}" wx:key="key"></t-tab>
-    <view class="p-10" slot="content">
+    <view class="p-20" slot="content">
       <view class="bg-white p-20 border-radius">
         <view>
-          <view class="classify-title">精品茶具</view>
+          <view class="classify-title">{{tabList[current - 1].name}}</view>
           <view class="flex flex-wrap">
-            <view class="classify-cell" wx:for="{{list}}" wx:key="id">
+            <view class="classify-cell" wx:for="{{list}}" wx:key="id" data-name="{{item.name}}" bindtap="openGoods">
               <t-image src="{{item.url}}" t-class="classify-image"></t-image>
               <view class="classify-name">{{item.name}}</view>
             </view>
