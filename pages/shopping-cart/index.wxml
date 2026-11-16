@@ -8,8 +8,8 @@
           <view class="pl-5 pr-5">
             <radio color="{{main_color}}" checked="{{item.checked}}" data-index="{{index}}" catchtap="radioChange"></radio>
           </view>
-          <view data-id="{{item.goodsId}}" catchtap="openDetail">
-            <t-image class="shopping-cart-image" src="{{item.url}}"></t-image>
+          <view class="shopping-cart-cover" data-id="{{item.goodsId}}" catchtap="openDetail">
+            <t-image t-class="shopping-cart-image" src="{{item.url}}" mode="aspectFill"></t-image>
           </view>
         </view>
         <view class="shopping-cart-content flex flex-direction justify-between ml-10" slot='content'>

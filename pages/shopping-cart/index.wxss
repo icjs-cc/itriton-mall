@@ -1,11 +1,18 @@
 /* pages/shopping-cart/index.wxss */
-.shopping-cart-image {
+.shopping-cart-cover {
   width: 156rpx;
   height: 156rpx;
-  background: rgba(0, 0, 0, 0);
+  flex-shrink: 0;
+  overflow: hidden;
+  box-sizing: border-box;
   border: 1rpx solid #E5E9E8;
-  opacity: 1;
   border-radius: var(--radius, 16rpx);
+}
+
+.shopping-cart-image {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .shopping-cart-price {
